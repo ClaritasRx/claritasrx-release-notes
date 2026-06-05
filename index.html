@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ascend Release Notes</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --navy:    #1B1F3B;
+      --navy-mid:#252A4A;
+      --orange:  #E8622A;
+      --orange-light: #F47B4F;
+      --cream:   #F7F5F0;
+      --white:   #FFFFFF;
+      --text:    #1B1F3B;
+      --muted:   #6B7280;
+      --border:  #E5E2DA;
+      --new-bg:  #FFF3EE;
+      --new-dot: #E8622A;
+      --fix-bg:  #F0F4FF;
+      --fix-dot: #4B5CB8;
+      --enh-bg:  #F0FAF4;
+      --enh-dot: #2E8B57;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    /* ── HEADER ── */
+    header {
+      background: var(--navy);
+      padding: 56px 0 48px;
+      position: relative;
+      overflow: hidden;
+    }
+    header::before {
+      content: '';
+      position: absolute;
+      right: -80px; top: -80px;
+      width: 360px; height: 360px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(232,98,42,0.35) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .header-inner {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+    .brand {
+      font-family: 'DM Serif Display', serif;
+      font-size: 2.6rem;
+      color: var(--white);
+      letter-spacing: -0.5px;
+      line-height: 1;
+    }
+    .brand span { color: var(--orange); }
+    .header-sub {
+      margin-top: 10px;
+      color: rgba(255,255,255,0.55);
+      font-size: 0.95rem;
+      font-weight: 300;
+    }
+
+    /* ── LAYOUT ── */
+    main {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 48px 32px 96px;
+    }
+
+    /* ── RELEASE SELECTOR ── */
+    .release-nav {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 40px;
+      flex-wrap: wrap;
+    }
+    .release-nav label {
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .release-select {
+      appearance: none;
+      background: var(--white);
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      padding: 8px 36px 8px 14px;
+      font-family: inherit;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--text);
+      cursor: pointer;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath d='M2 4l4 4 4-4' stroke='%236B7280' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 12px center;
+    }
+    .release-select:focus { outline: 2px solid var(--orange); outline-offset: 2px; }
+
+    /* ── RELEASE HEADER ── */
+    .release-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+    }
+    .release-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 2rem;
+      color: var(--text);
+    }
+    .release-title span { color: var(--orange); }
+    .release-date {
+      background: var(--navy);
+      color: var(--white);
+      font-size: 0.82rem;
+      font-weight: 500;
+      padding: 6px 14px;
+      border-radius: 20px;
+      white-space: nowrap;
+      margin-top: 6px;
+    }
+    .release-summary {
+      color: var(--muted);
+      font-size: 0.97rem;
+      line-height: 1.65;
+      margin-bottom: 28px;
+      max-width: 620px;
+    }
+
+    /* ── LEGEND ── */
+    .legend {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 36px;
+      flex-wrap: wrap;
+    }
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+    .dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .dot-new { background: var(--new-dot); }
+    .dot-fix { background: var(--fix-dot); }
+    .dot-enhancement { background: var(--enh-dot); }
+
+    /* ── MODULE CARD ── */
+    .module-card {
+      background: var(--white);
+      border: 1.5px solid var(--border);
+      border-radius: 14px;
+      margin-bottom: 24px;
+      overflow: hidden;
+    }
+    .module-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 24px;
+      border-bottom: 1.5px solid var(--border);
+    }
+    .module-meta { display: flex; align-items: center; gap: 14px; }
+    .module-icon {
+      width: 40px; height: 40px;
+      border-radius: 10px;
+      background: var(--navy);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .module-icon svg { width: 18px; height: 18px; fill: none; stroke: var(--white); stroke-width: 1.6; }
+    .module-name {
+      font-weight: 600;
+      font-size: 1rem;
+      color: var(--text);
+    }
+    .module-desc {
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+    .update-count {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--orange);
+      background: var(--new-bg);
+      padding: 4px 11px;
+      border-radius: 20px;
+    }
+
+    /* ── UPDATE ROWS ── */
+    .update-row {
+      display: flex;
+      gap: 16px;
+      padding: 18px 24px;
+      border-bottom: 1px solid var(--border);
+      align-items: flex-start;
+      transition: background 0.15s;
+    }
+    .update-row:last-child { border-bottom: none; }
+    .update-row:hover { background: #FAFAF8; }
+    .badge {
+      flex-shrink: 0;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 4px 9px;
+      border-radius: 5px;
+      margin-top: 2px;
+      min-width: 82px;
+      text-align: center;
+    }
+    .badge-new       { background: var(--new-bg); color: var(--orange); }
+    .badge-fix       { background: var(--fix-bg); color: #4B5CB8; }
+    .badge-enhancement { background: var(--enh-bg); color: #2E8B57; }
+    .update-content { flex: 1; }
+    .update-title {
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+    .update-body {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* ── LOADING / ERROR ── */
+    .state-msg {
+      text-align: center;
+      padding: 80px 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+    .state-msg .spinner {
+      width: 28px; height: 28px;
+      border: 2.5px solid var(--border);
+      border-top-color: var(--orange);
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+      margin: 0 auto 16px;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 32px;
+      font-size: 0.8rem;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+    }
+    footer a { color: var(--orange); text-decoration: none; }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="brand"><span id="product-name">Ascend</span> Release Notes</div>
+    <div class="header-sub">What's new, improved, and fixed. Updated with each release.</div>
+  </div>
+</header>
+
+<main>
+  <div class="release-nav">
+    <label>Release</label>
+    <select class="release-select" id="release-select"></select>
+  </div>
+
+  <div id="release-content">
+    <div class="state-msg"><div class="spinner"></div>Loading release notes…</div>
+  </div>
+</main>
+
+<footer>
+  Ascend by <a href="https://claritasrx.com" target="_blank">ClaritasRx</a> &nbsp;·&nbsp; Release notes sourced from GitHub
+</footer>
+
+<script>
+  // ─────────────────────────────────────────────────────────────────
+  // CONFIGURE THIS: point to your raw GitHub releases.json
+  // Format: https://raw.githubusercontent.com/{owner}/{repo}/{branch}/releases.json
+  // ─────────────────────────────────────────────────────────────────
+  const DATA_URL = 'releases.json';
+  // For GitHub Pages production use, replace with your raw GitHub URL, e.g.:
+  // const DATA_URL = 'https://raw.githubusercontent.com/claritasrx/ascend-releases/main/releases.json';
+
+  const ICONS = {
+    'Core App': `<svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>`,
+    'Data Aggregation': `<svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v6c0 1.66 4 3 9 3s9-1.34 9-3V5"/><path d="M3 11v6c0 1.66 4 3 9 3s9-1.34 9-3v-6"/></svg>`,
+    'Access Analytics': `<svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>`,
+    'Patient Watchtower': `<svg viewBox="0 0 24 24"><path d="M1 12S5 4 12 4s11 8 11 8-4 8-11 8S1 12 1 12z"/><circle cx="12" cy="12" r="3"/></svg>`,
+    'Patient Services CRM': `<svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>`,
+  };
+  const DEFAULT_ICON = `<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 3"/></svg>`;
+
+  let allReleases = [];
+
+  async function load() {
+    try {
+      const res = await fetch(DATA_URL + '?_=' + Date.now());
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const data = await res.json();
+      allReleases = data.releases || [];
+      if (data.product) document.getElementById('product-name').textContent = data.product;
+      buildSelector();
+      renderRelease(0);
+    } catch (e) {
+      document.getElementById('release-content').innerHTML =
+        `<div class="state-msg">⚠️ Could not load release notes.<br><small>${e.message}</small></div>`;
+    }
+  }
+
+  function buildSelector() {
+    const sel = document.getElementById('release-select');
+    sel.innerHTML = '';
+    allReleases.forEach((r, i) => {
+      const opt = document.createElement('option');
+      opt.value = i;
+      opt.textContent = `${r.version} · ${r.date}`;
+      sel.appendChild(opt);
+    });
+    sel.addEventListener('change', () => renderRelease(parseInt(sel.value)));
+  }
+
+  function renderRelease(idx) {
+    const r = allReleases[idx];
+    if (!r) return;
+
+    const newCount = r.modules.reduce((a, m) => a + m.updates.filter(u => u.type === 'new').length, 0);
+    const fixCount = r.modules.reduce((a, m) => a + m.updates.filter(u => u.type === 'fix').length, 0);
+    const enhCount = r.modules.reduce((a, m) => a + m.updates.filter(u => u.type === 'enhancement').length, 0);
+
+    let html = `
+      <div class="release-header">
+        <div class="release-title">Release <span>${r.version}</span></div>
+        <div class="release-date">${r.date}</div>
+      </div>
+      <p class="release-summary">${r.summary}</p>
+      <div class="legend">
+        ${newCount ? `<div class="legend-item"><span class="dot dot-new"></span> New Feature</div>` : ''}
+        ${enhCount ? `<div class="legend-item"><span class="dot dot-enhancement"></span> Enhancement</div>` : ''}
+        ${fixCount ? `<div class="legend-item"><span class="dot dot-fix"></span> Fix</div>` : ''}
+      </div>
+    `;
+
+    r.modules.forEach(mod => {
+      const icon = ICONS[mod.name] || DEFAULT_ICON;
+      html += `
+        <div class="module-card">
+          <div class="module-header">
+            <div class="module-meta">
+              <div class="module-icon">${icon}</div>
+              <div>
+                <div class="module-name">${mod.name}</div>
+                <div class="module-desc">${mod.description}</div>
+              </div>
+            </div>
+            <div class="update-count">${mod.updates.length} update${mod.updates.length !== 1 ? 's' : ''}</div>
+          </div>
+      `;
+      mod.updates.forEach(u => {
+        html += `
+          <div class="update-row">
+            <span class="badge badge-${u.type}">${u.type === 'new' ? 'New Feature' : u.type === 'fix' ? 'Fix' : 'Enhancement'}</span>
+            <div class="update-content">
+              <div class="update-title">${u.title}</div>
+              <div class="update-body">${u.body}</div>
+            </div>
+          </div>
+        `;
+      });
+      html += `</div>`;
+    });
+
+    document.getElementById('release-content').innerHTML = html;
+  }
+
+  load();
+</script>
+</body>
+</html>
