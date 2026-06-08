@@ -100,6 +100,7 @@
       scrollbar-width: none;
       position: relative;
       z-index: 1;
+      padding-right: 40px;
     }
     .module-tabs::-webkit-scrollbar { display: none; }
 
@@ -500,7 +501,7 @@
 
     // Build select options
     const selectOptions = releases.map((r, i) =>
-      `<option value="${i}">${r.version} · ${r.date}</option>`
+      `<option value="${i}">${r.date}</option>`
     ).join('');
 
     const icon = ICONS[mod.id] || ICONS['core-app'];
