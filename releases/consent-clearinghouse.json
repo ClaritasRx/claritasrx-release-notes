@@ -1,0 +1,17 @@
+{
+  "module": "Consent Clearinghouse",
+  "releases": [
+    {
+      "version": "2026.5",
+      "date": "May 28, 2026",
+      "summary": "Initial release of the Consent Clearinghouse — full consent management is now live across patient-level visibility, evidence documentation, and alignment reporting.",
+      "updates": [
+        { "type": "new", "title": "Consent Health Dashboard",   "body": "View consent health at a glance across your entire book of business with a dedicated dashboard surfacing key consent metrics and trends." },
+        { "type": "new", "title": "Patient-Level Consent Detail", "body": "Drill into individual patient consent records to review consent status, history, and associated evidence." },
+        { "type": "new", "title": "Evidence Documents",         "body": "Access and review consent evidence documents directly within the platform, eliminating the need to cross-reference external systems." },
+        { "type": "new", "title": "Alignment Report",           "body": "Run the Alignment Report to identify consent misalignment across your book of business and take corrective action proactively." },
+        { "type": "new", "title": "Role-Based Navigation Access", "body": "Navigation access to CCH is entitlement-controlled per role, ensuring the right users have access to the right consent data." }
+      ]
+    }
+  ]
+}

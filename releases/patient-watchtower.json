@@ -1,0 +1,13 @@
+{
+  "module": "Patient Watchtower",
+  "releases": [
+    {
+      "version": "2026.5",
+      "date": "May 28, 2026",
+      "summary": "Monitoring improvements and notification routing fixes.",
+      "updates": [
+        { "type": "fix", "title": "Notifications Routing", "body": "Fixed incorrect routing of inquiry notifications that were previously being mapped under Patient Watchtower incorrectly." }
+      ]
+    }
+  ]
+}

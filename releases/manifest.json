@@ -1,0 +1,11 @@
+{
+  "product": "Ascend",
+  "modules": [
+    { "id": "core-app",            "name": "Core App",            "description": "Platform-wide experience, navigation & administration", "file": "releases/core-app.json" },
+    { "id": "data-aggregation",    "name": "Data Aggregation",    "description": "Foundational data integration, mastering & delivery",  "file": "releases/data-aggregation.json" },
+    { "id": "access-analytics",    "name": "Access Analytics",    "description": "Market access reporting & field analytics",             "file": "releases/access-analytics.json" },
+    { "id": "patient-watchtower",  "name": "Patient Watchtower",  "description": "Patient monitoring & program oversight",                "file": "releases/patient-watchtower.json" },
+    { "id": "patient-services-crm",    "name": "Patient Services CRM",    "description": "Patient engagement, consent & services management",     "file": "releases/patient-services-crm.json" },
+    { "id": "consent-clearinghouse",   "name": "Consent Clearinghouse",   "description": "Consent management, alignment reporting & evidence",       "file": "releases/consent-clearinghouse.json" }
+  ]
+}

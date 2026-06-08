@@ -1,30 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Ascend Release Notes</title>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet"/>
   <style>
     :root {
-      --navy:    #1B1F3B;
-      --navy-mid:#252A4A;
-      --orange:  #E8622A;
-      --orange-light: #F47B4F;
-      --cream:   #F7F5F0;
-      --white:   #FFFFFF;
-      --text:    #1B1F3B;
-      --muted:   #6B7280;
-      --border:  #E5E2DA;
-      --new-bg:  #FFF3EE;
-      --new-dot: #E8622A;
-      --fix-bg:  #F0F4FF;
-      --fix-dot: #4B5CB8;
-      --enh-bg:  #F0FAF4;
-      --enh-dot: #2E8B57;
+      --navy:        #1B1F3B;
+      --navy-mid:    #252A4A;
+      --navy-light:  #2E3460;
+      --orange:      #E8622A;
+      --orange-light:#F47B4F;
+      --cream:       #F7F5F0;
+      --white:       #FFFFFF;
+      --text:        #1B1F3B;
+      --muted:       #6B7280;
+      --border:      #E5E2DA;
+      --new-bg:      #FFF3EE;
+      --fix-bg:      #F0F4FF;
+      --enh-bg:      #F0FAF4;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
 
     body {
       font-family: 'DM Sans', sans-serif;
@@ -36,27 +36,49 @@
     /* ── HEADER ── */
     header {
       background: var(--navy);
-      padding: 56px 0 48px;
+      padding: 52px 0 0;
       position: relative;
       overflow: hidden;
     }
     header::before {
       content: '';
       position: absolute;
-      right: -80px; top: -80px;
-      width: 360px; height: 360px;
+      right: -100px; top: -100px;
+      width: 420px; height: 420px;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(232,98,42,0.35) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(232,98,42,0.3) 0%, transparent 68%);
       pointer-events: none;
     }
-    .header-inner {
-      max-width: 860px;
-      margin: 0 auto;
-      padding: 0 32px;
+    header::after {
+      content: '';
+      position: absolute;
+      left: -60px; bottom: -60px;
+      width: 280px; height: 280px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(75,92,184,0.18) 0%, transparent 70%);
+      pointer-events: none;
     }
+
+    .header-inner {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 40px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .header-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 40px;
+      flex-wrap: wrap;
+    }
+
     .brand {
       font-family: 'DM Serif Display', serif;
-      font-size: 2.6rem;
+      font-size: 2.5rem;
       color: var(--white);
       letter-spacing: -0.5px;
       line-height: 1;
@@ -64,28 +86,90 @@
     .brand span { color: var(--orange); }
     .header-sub {
       margin-top: 10px;
-      color: rgba(255,255,255,0.55);
-      font-size: 0.95rem;
+      color: rgba(255,255,255,0.5);
+      font-size: 0.9rem;
       font-weight: 300;
+      letter-spacing: 0.01em;
     }
 
-    /* ── LAYOUT ── */
+    /* ── MODULE TABS ── */
+    .module-tabs {
+      display: flex;
+      gap: 0;
+      overflow-x: auto;
+      scrollbar-width: none;
+      position: relative;
+      z-index: 1;
+    }
+    .module-tabs::-webkit-scrollbar { display: none; }
+
+    .tab-btn {
+      flex-shrink: 0;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: rgba(255,255,255,0.5);
+      padding: 14px 22px;
+      position: relative;
+      transition: color 0.2s;
+      white-space: nowrap;
+      letter-spacing: 0.01em;
+    }
+    .tab-btn::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 2.5px;
+      background: var(--orange);
+      border-radius: 2px 2px 0 0;
+      transform: scaleX(0);
+      transition: transform 0.2s;
+    }
+    .tab-btn:hover { color: rgba(255,255,255,0.85); }
+    .tab-btn.active {
+      color: var(--white);
+      font-weight: 600;
+    }
+    .tab-btn.active::after { transform: scaleX(1); }
+
+    /* ── MAIN ── */
     main {
-      max-width: 860px;
+      max-width: 1000px;
       margin: 0 auto;
-      padding: 48px 32px 96px;
+      padding: 44px 40px 96px;
     }
 
-    /* ── RELEASE SELECTOR ── */
-    .release-nav {
+    /* ── RELEASE PICKER ROW ── */
+    .release-picker-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 36px;
+      flex-wrap: wrap;
+    }
+
+    .module-title-area h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.6rem;
+      color: var(--text);
+    }
+    .module-title-area p {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-top: 3px;
+    }
+
+    .picker-group {
       display: flex;
       align-items: center;
       gap: 10px;
-      margin-bottom: 40px;
-      flex-wrap: wrap;
     }
-    .release-nav label {
-      font-size: 0.78rem;
+    .picker-group label {
+      font-size: 0.75rem;
       font-weight: 600;
       letter-spacing: 0.08em;
       text-transform: uppercase;
@@ -98,163 +182,163 @@
       border-radius: 8px;
       padding: 8px 36px 8px 14px;
       font-family: inherit;
-      font-size: 0.9rem;
+      font-size: 0.88rem;
       font-weight: 500;
       color: var(--text);
       cursor: pointer;
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath d='M2 4l4 4 4-4' stroke='%236B7280' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
       background-repeat: no-repeat;
       background-position: right 12px center;
+      transition: border-color 0.15s;
     }
-    .release-select:focus { outline: 2px solid var(--orange); outline-offset: 2px; }
+    .release-select:focus { outline: 2px solid var(--orange); outline-offset: 2px; border-color: var(--orange); }
 
-    /* ── RELEASE HEADER ── */
-    .release-header {
+    /* ── RELEASE META ── */
+    .release-meta {
+      background: var(--white);
+      border: 1.5px solid var(--border);
+      border-radius: 14px;
+      padding: 28px 32px;
+      margin-bottom: 24px;
       display: flex;
       align-items: flex-start;
       justify-content: space-between;
-      gap: 16px;
-      margin-bottom: 12px;
+      gap: 24px;
       flex-wrap: wrap;
     }
-    .release-title {
-      font-family: 'DM Serif Display', serif;
-      font-size: 2rem;
-      color: var(--text);
+    .release-summary-text {
+      font-size: 0.95rem;
+      color: var(--muted);
+      line-height: 1.7;
+      flex: 1;
+      min-width: 200px;
     }
-    .release-title span { color: var(--orange); }
-    .release-date {
+    .release-date-badge {
       background: var(--navy);
       color: var(--white);
-      font-size: 0.82rem;
+      font-size: 0.8rem;
       font-weight: 500;
-      padding: 6px 14px;
+      padding: 6px 16px;
       border-radius: 20px;
       white-space: nowrap;
-      margin-top: 6px;
-    }
-    .release-summary {
-      color: var(--muted);
-      font-size: 0.97rem;
-      line-height: 1.65;
-      margin-bottom: 28px;
-      max-width: 620px;
+      flex-shrink: 0;
     }
 
     /* ── LEGEND ── */
     .legend {
       display: flex;
-      gap: 16px;
-      margin-bottom: 36px;
+      gap: 18px;
+      margin-bottom: 24px;
       flex-wrap: wrap;
     }
     .legend-item {
       display: flex;
       align-items: center;
       gap: 7px;
-      font-size: 0.82rem;
+      font-size: 0.8rem;
       color: var(--muted);
+      font-weight: 500;
     }
-    .dot {
-      width: 8px; height: 8px;
-      border-radius: 50%;
-      flex-shrink: 0;
-    }
-    .dot-new { background: var(--new-dot); }
-    .dot-fix { background: var(--fix-dot); }
-    .dot-enhancement { background: var(--enh-dot); }
+    .dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+    .dot-new { background: var(--orange); }
+    .dot-fix { background: #4B5CB8; }
+    .dot-enhancement { background: #2E8B57; }
 
-    /* ── MODULE CARD ── */
-    .module-card {
+    /* ── UPDATES LIST ── */
+    .updates-list {
       background: var(--white);
       border: 1.5px solid var(--border);
       border-radius: 14px;
-      margin-bottom: 24px;
       overflow: hidden;
     }
-    .module-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 20px 24px;
-      border-bottom: 1.5px solid var(--border);
-    }
-    .module-meta { display: flex; align-items: center; gap: 14px; }
-    .module-icon {
-      width: 40px; height: 40px;
-      border-radius: 10px;
-      background: var(--navy);
-      display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0;
-    }
-    .module-icon svg { width: 18px; height: 18px; fill: none; stroke: var(--white); stroke-width: 1.6; }
-    .module-name {
-      font-weight: 600;
-      font-size: 1rem;
-      color: var(--text);
-    }
-    .module-desc {
-      font-size: 0.82rem;
+
+    .updates-section-header {
+      padding: 16px 28px 12px;
+      background: #FAFAF8;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
       color: var(--muted);
-      margin-top: 2px;
-    }
-    .update-count {
-      font-size: 0.8rem;
-      font-weight: 600;
-      color: var(--orange);
-      background: var(--new-bg);
-      padding: 4px 11px;
-      border-radius: 20px;
     }
 
-    /* ── UPDATE ROWS ── */
     .update-row {
       display: flex;
-      gap: 16px;
-      padding: 18px 24px;
+      gap: 20px;
+      padding: 20px 28px;
       border-bottom: 1px solid var(--border);
       align-items: flex-start;
       transition: background 0.15s;
+      animation: fadeUp 0.25s ease both;
     }
     .update-row:last-child { border-bottom: none; }
     .update-row:hover { background: #FAFAF8; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(6px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
     .badge {
       flex-shrink: 0;
-      font-size: 0.68rem;
+      font-size: 0.67rem;
       font-weight: 700;
-      letter-spacing: 0.06em;
+      letter-spacing: 0.07em;
       text-transform: uppercase;
-      padding: 4px 9px;
+      padding: 4px 10px;
       border-radius: 5px;
       margin-top: 2px;
-      min-width: 82px;
+      min-width: 86px;
       text-align: center;
     }
-    .badge-new       { background: var(--new-bg); color: var(--orange); }
-    .badge-fix       { background: var(--fix-bg); color: #4B5CB8; }
+    .badge-new         { background: var(--new-bg); color: var(--orange); }
+    .badge-fix         { background: var(--fix-bg); color: #4B5CB8; }
     .badge-enhancement { background: var(--enh-bg); color: #2E8B57; }
+
     .update-content { flex: 1; }
     .update-title {
       font-weight: 600;
       font-size: 0.95rem;
       color: var(--text);
-      margin-bottom: 4px;
+      margin-bottom: 5px;
     }
     .update-body {
-      font-size: 0.88rem;
+      font-size: 0.875rem;
       color: var(--muted);
-      line-height: 1.6;
+      line-height: 1.65;
     }
 
-    /* ── LOADING / ERROR ── */
+    /* ── STATS ROW ── */
+    .stats-row {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+    }
+    .stat-pill {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      background: var(--white);
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      padding: 8px 14px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+    .stat-pill .dot { width: 7px; height: 7px; }
+
+    /* ── STATES ── */
     .state-msg {
       text-align: center;
       padding: 80px 0;
       color: var(--muted);
       font-size: 0.95rem;
     }
-    .state-msg .spinner {
-      width: 28px; height: 28px;
+    .spinner {
+      width: 26px; height: 26px;
       border: 2.5px solid var(--border);
       border-top-color: var(--orange);
       border-radius: 50%;
@@ -263,142 +347,234 @@
     }
     @keyframes spin { to { transform: rotate(360deg); } }
 
+    .empty-state {
+      text-align: center;
+      padding: 60px 0;
+      color: var(--muted);
+    }
+    .empty-state svg {
+      width: 40px; height: 40px;
+      stroke: var(--border);
+      margin-bottom: 14px;
+    }
+
     /* ── FOOTER ── */
     footer {
       text-align: center;
-      padding: 32px;
-      font-size: 0.8rem;
+      padding: 28px;
+      font-size: 0.78rem;
       color: var(--muted);
       border-top: 1px solid var(--border);
     }
     footer a { color: var(--orange); text-decoration: none; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 600px) {
+      .header-inner { padding: 0 20px; }
+      main { padding: 32px 20px 64px; }
+      .brand { font-size: 1.9rem; }
+      .tab-btn { padding: 12px 16px; font-size: 0.8rem; }
+      .release-meta { padding: 20px; }
+      .update-row { padding: 16px 20px; gap: 12px; }
+      .updates-section-header { padding: 12px 20px; }
+    }
   </style>
 </head>
 <body>
 
 <header>
   <div class="header-inner">
-    <div class="brand"><span id="product-name">Ascend</span> Release Notes</div>
-    <div class="header-sub">What's new, improved, and fixed. Updated with each release.</div>
+    <div class="header-top">
+      <div>
+        <div class="brand"><span id="product-name">Ascend</span> Release Notes</div>
+        <div class="header-sub">What's new, improved, and fixed. Updated with each release.</div>
+      </div>
+    </div>
+    <nav class="module-tabs" id="module-tabs">
+      <div class="state-msg" style="padding:14px 0;color:rgba(255,255,255,0.4);font-size:0.85rem;">Loading modules…</div>
+    </nav>
   </div>
 </header>
 
-<main>
-  <div class="release-nav">
-    <label>Release</label>
-    <select class="release-select" id="release-select"></select>
-  </div>
-
-  <div id="release-content">
-    <div class="state-msg"><div class="spinner"></div>Loading release notes…</div>
-  </div>
+<main id="main-content">
+  <div class="state-msg"><div class="spinner"></div>Loading release notes…</div>
 </main>
 
 <footer>
-  Ascend by <a href="https://claritasrx.com" target="_blank">ClaritasRx</a> &nbsp;·&nbsp; Release notes sourced from GitHub
+  Ascend by <a href="https://claritasrx.com" target="_blank">ClaritasRx</a> &nbsp;·&nbsp; Sourced from GitHub &nbsp;·&nbsp; Updates automatically with each release
 </footer>
 
 <script>
   // ─────────────────────────────────────────────────────────────────
-  // CONFIGURE THIS: point to your raw GitHub releases.json
-  // Format: https://raw.githubusercontent.com/{owner}/{repo}/{branch}/releases.json
+  // CONFIG — update this to your raw GitHub URL once the repo is live
+  // e.g. https://raw.githubusercontent.com/claritasrx/ascend-release-notes/main/
   // ─────────────────────────────────────────────────────────────────
-  const DATA_URL = 'releases.json';
-  // For GitHub Pages production use, replace with your raw GitHub URL, e.g.:
-  // const DATA_URL = 'https://raw.githubusercontent.com/claritasrx/ascend-releases/main/releases.json';
+  const BASE_URL = './';
 
   const ICONS = {
-    'Core App': `<svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>`,
-    'Data Aggregation': `<svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v6c0 1.66 4 3 9 3s9-1.34 9-3V5"/><path d="M3 11v6c0 1.66 4 3 9 3s9-1.34 9-3v-6"/></svg>`,
-    'Access Analytics': `<svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>`,
-    'Patient Watchtower': `<svg viewBox="0 0 24 24"><path d="M1 12S5 4 12 4s11 8 11 8-4 8-11 8S1 12 1 12z"/><circle cx="12" cy="12" r="3"/></svg>`,
-    'Patient Services CRM': `<svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>`,
+    'core-app':             `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>`,
+    'data-aggregation':     `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v6c0 1.66 4 3 9 3s9-1.34 9-3V5"/><path d="M3 11v6c0 1.66 4 3 9 3s9-1.34 9-3v-6"/></svg>`,
+    'access-analytics':     `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>`,
+    'patient-watchtower':   `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12S5 4 12 4s11 8 11 8-4 8-11 8S1 12 1 12z"/><circle cx="12" cy="12" r="3"/></svg>`,
+    'patient-services-crm': `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>`,
+    'consent-clearinghouse': `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>`,
   };
-  const DEFAULT_ICON = `<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 3"/></svg>`;
 
-  let allReleases = [];
+  let manifest = null;
+  let activeModuleId = null;
+  let moduleCache = {};
 
-  async function load() {
+  async function fetchJson(url) {
+    const res = await fetch(url + '?_=' + Date.now());
+    if (!res.ok) throw new Error(`HTTP ${res.status} — ${url}`);
+    return res.json();
+  }
+
+  async function init() {
     try {
-      const res = await fetch(DATA_URL + '?_=' + Date.now());
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
-      const data = await res.json();
-      allReleases = data.releases || [];
-      if (data.product) document.getElementById('product-name').textContent = data.product;
-      buildSelector();
-      renderRelease(0);
+      manifest = await fetchJson(BASE_URL + 'releases/manifest.json');
+      if (manifest.product) document.getElementById('product-name').textContent = manifest.product;
+      buildTabs();
+      selectModule(manifest.modules[0].id);
     } catch (e) {
-      document.getElementById('release-content').innerHTML =
-        `<div class="state-msg">⚠️ Could not load release notes.<br><small>${e.message}</small></div>`;
+      document.getElementById('main-content').innerHTML =
+        `<div class="state-msg">⚠️ Could not load release data.<br><small style="opacity:0.6">${e.message}</small></div>`;
+      document.getElementById('module-tabs').innerHTML = '';
     }
   }
 
-  function buildSelector() {
-    const sel = document.getElementById('release-select');
-    sel.innerHTML = '';
-    allReleases.forEach((r, i) => {
-      const opt = document.createElement('option');
-      opt.value = i;
-      opt.textContent = `${r.version} · ${r.date}`;
-      sel.appendChild(opt);
+  function buildTabs() {
+    const nav = document.getElementById('module-tabs');
+    nav.innerHTML = '';
+    manifest.modules.forEach(mod => {
+      const btn = document.createElement('button');
+      btn.className = 'tab-btn';
+      btn.dataset.id = mod.id;
+      btn.textContent = mod.name;
+      btn.addEventListener('click', () => selectModule(mod.id));
+      nav.appendChild(btn);
     });
-    sel.addEventListener('change', () => renderRelease(parseInt(sel.value)));
   }
 
-  function renderRelease(idx) {
-    const r = allReleases[idx];
+  async function selectModule(id) {
+    activeModuleId = id;
+
+    // Update tab active state
+    document.querySelectorAll('.tab-btn').forEach(b => {
+      b.classList.toggle('active', b.dataset.id === id);
+    });
+
+    const mod = manifest.modules.find(m => m.id === id);
+    if (!mod) return;
+
+    document.getElementById('main-content').innerHTML =
+      `<div class="state-msg"><div class="spinner"></div>Loading ${mod.name}…</div>`;
+
+    try {
+      if (!moduleCache[id]) {
+        moduleCache[id] = await fetchJson(BASE_URL + mod.file);
+      }
+      renderModule(mod, moduleCache[id]);
+    } catch (e) {
+      document.getElementById('main-content').innerHTML =
+        `<div class="state-msg">⚠️ Could not load ${mod.name} data.<br><small style="opacity:0.6">${e.message}</small></div>`;
+    }
+  }
+
+  function renderModule(mod, data) {
+    const releases = data.releases || [];
+    if (!releases.length) {
+      document.getElementById('main-content').innerHTML = `
+        <div class="release-picker-row">
+          <div class="module-title-area">
+            <h2>${mod.name}</h2>
+            <p>${mod.description}</p>
+          </div>
+        </div>
+        <div class="empty-state">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 8v4m0 4h.01"/></svg>
+          <p>No releases yet for this module.</p>
+        </div>`;
+      return;
+    }
+
+    // Build select options
+    const selectOptions = releases.map((r, i) =>
+      `<option value="${i}">${r.version} · ${r.date}</option>`
+    ).join('');
+
+    const icon = ICONS[mod.id] || ICONS['core-app'];
+
+    document.getElementById('main-content').innerHTML = `
+      <div class="release-picker-row">
+        <div class="module-title-area">
+          <h2>${mod.name}</h2>
+          <p>${mod.description}</p>
+        </div>
+        <div class="picker-group">
+          <label>Release</label>
+          <select class="release-select" id="release-select">${selectOptions}</select>
+        </div>
+      </div>
+      <div id="release-body"></div>
+    `;
+
+    const sel = document.getElementById('release-select');
+    sel.addEventListener('change', () => renderRelease(releases, parseInt(sel.value)));
+    renderRelease(releases, 0);
+  }
+
+  function renderRelease(releases, idx) {
+    const r = releases[idx];
     if (!r) return;
 
-    const newCount = r.modules.reduce((a, m) => a + m.updates.filter(u => u.type === 'new').length, 0);
-    const fixCount = r.modules.reduce((a, m) => a + m.updates.filter(u => u.type === 'fix').length, 0);
-    const enhCount = r.modules.reduce((a, m) => a + m.updates.filter(u => u.type === 'enhancement').length, 0);
+    const newItems = r.updates.filter(u => u.type === 'new');
+    const enhItems = r.updates.filter(u => u.type === 'enhancement');
+    const fixItems = r.updates.filter(u => u.type === 'fix');
 
     let html = `
-      <div class="release-header">
-        <div class="release-title">Release <span>${r.version}</span></div>
-        <div class="release-date">${r.date}</div>
-      </div>
-      <p class="release-summary">${r.summary}</p>
-      <div class="legend">
-        ${newCount ? `<div class="legend-item"><span class="dot dot-new"></span> New Feature</div>` : ''}
-        ${enhCount ? `<div class="legend-item"><span class="dot dot-enhancement"></span> Enhancement</div>` : ''}
-        ${fixCount ? `<div class="legend-item"><span class="dot dot-fix"></span> Fix</div>` : ''}
+      <div class="release-meta">
+        <div class="release-summary-text">${r.summary}</div>
+        <div class="release-date-badge">${r.date}</div>
       </div>
     `;
 
-    r.modules.forEach(mod => {
-      const icon = ICONS[mod.name] || DEFAULT_ICON;
-      html += `
-        <div class="module-card">
-          <div class="module-header">
-            <div class="module-meta">
-              <div class="module-icon">${icon}</div>
-              <div>
-                <div class="module-name">${mod.name}</div>
-                <div class="module-desc">${mod.description}</div>
-              </div>
-            </div>
-            <div class="update-count">${mod.updates.length} update${mod.updates.length !== 1 ? 's' : ''}</div>
-          </div>
-      `;
-      mod.updates.forEach(u => {
+    // Stats
+    const stats = [];
+    if (newItems.length)  stats.push(`<div class="stat-pill"><span class="dot dot-new"></span>${newItems.length} New Feature${newItems.length !== 1 ? 's' : ''}</div>`);
+    if (enhItems.length)  stats.push(`<div class="stat-pill"><span class="dot dot-enhancement"></span>${enhItems.length} Enhancement${enhItems.length !== 1 ? 's' : ''}</div>`);
+    if (fixItems.length)  stats.push(`<div class="stat-pill"><span class="dot dot-fix"></span>${fixItems.length} Fix${fixItems.length !== 1 ? 'es' : ''}</div>`);
+
+    if (stats.length) html += `<div class="stats-row">${stats.join('')}</div>`;
+
+    html += `<div class="updates-list">`;
+
+    const sections = [
+      { label: "What's New",       items: newItems,  type: 'new' },
+      { label: 'Enhancements',     items: enhItems,  type: 'enhancement' },
+      { label: 'Fixes',            items: fixItems,  type: 'fix' },
+    ];
+
+    sections.forEach(sec => {
+      if (!sec.items.length) return;
+      html += `<div class="updates-section-header">${sec.label}</div>`;
+      sec.items.forEach((u, i) => {
         html += `
-          <div class="update-row">
+          <div class="update-row" style="animation-delay:${i * 0.04}s">
             <span class="badge badge-${u.type}">${u.type === 'new' ? 'New Feature' : u.type === 'fix' ? 'Fix' : 'Enhancement'}</span>
             <div class="update-content">
               <div class="update-title">${u.title}</div>
               <div class="update-body">${u.body}</div>
             </div>
-          </div>
-        `;
+          </div>`;
       });
-      html += `</div>`;
     });
 
-    document.getElementById('release-content').innerHTML = html;
+    html += `</div>`;
+    document.getElementById('release-body').innerHTML = html;
   }
 
-  load();
+  init();
 </script>
 </body>
 </html>
