@@ -1,5 +1,6 @@
+
 {
-  "product": "Ascend 2.0",
+  "product": "Ascend\u00ae",
   "modules": [
     {
       "id": "core-app",
@@ -9,38 +10,38 @@
     },
     {
       "id": "data-aggregation-platform",
-      "name": "Data Aggregation \u2014 Platform",
-      "description": "Foundational data integration, mastering & delivery",
+      "name": "Foundational Data Aggregation",
+      "description": "The foundation for clarity in patient data",
       "file": "releases/data-aggregation-platform.json"
     },
     {
       "id": "data-aggregation-dashboards",
       "name": "Data Aggregation \u2014 Dashboards",
-      "description": "Pre-built and custom analytics dashboards",
+      "description": "Tailored dashboards for every team",
       "file": "releases/data-aggregation-dashboards.json"
     },
     {
       "id": "access-analytics",
       "name": "Access Analytics",
-      "description": "Market access reporting & field analytics",
+      "description": "Real-time channel intelligence for smarter market access",
       "file": "releases/access-analytics.json"
     },
     {
       "id": "patient-watchtower",
-      "name": "Patient Watchtower",
-      "description": "Patient monitoring & program oversight",
+      "name": "Patient Watchtower\u2122",
+      "description": "The first and only care coordination platform built specifically for specialty and rare disease patients",
       "file": "releases/patient-watchtower.json"
     },
     {
       "id": "patient-services-crm",
       "name": "Patient Services Omnichannel CRM",
-      "description": "Patient engagement, consent & services management",
+      "description": "One patient journey: every channel in sync",
       "file": "releases/patient-services-crm.json"
     },
     {
       "id": "consent-clearinghouse",
-      "name": "Consent Clearinghouse",
-      "description": "Consent management, alignment reporting & evidence",
+      "name": "Consent Clearinghouse\u2122",
+      "description": "Secure consent. Confident action.",
       "file": "releases/consent-clearinghouse.json"
     }
   ]

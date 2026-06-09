@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Ascend Release Notes</title>
+  <title>Ascend® Release Notes</title>
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet"/>
   <style>
     :root {
@@ -137,9 +137,9 @@
       color: var(--text);
     }
     .nav-item.active {
-      color: var(--orange);
+      color: var(--white);
       font-weight: 600;
-      background: var(--new-bg);
+      background: var(--navy);
     }
     .nav-item.active::before { opacity: 1; }
 
@@ -151,7 +151,7 @@
       flex-shrink: 0;
       transition: background 0.15s;
     }
-    .nav-item.active .nav-icon { background: rgba(232,98,42,0.12); }
+    .nav-item.active .nav-icon { background: rgba(255,255,255,0.15); }
     .nav-icon svg {
       width: 14px; height: 14px;
       stroke: var(--muted);
@@ -161,7 +161,7 @@
       stroke-linejoin: round;
       transition: stroke 0.15s;
     }
-    .nav-item.active .nav-icon svg { stroke: var(--orange); }
+    .nav-item.active .nav-icon svg { stroke: var(--white); }
 
     /* ── MAIN CONTENT ── */
     main {
@@ -182,7 +182,7 @@
     .module-title-area h2 {
       font-family: 'DM Serif Display', serif;
       font-size: 1.7rem;
-      color: var(--text);
+      color: var(--indigo);
     }
     .module-title-area p {
       font-size: 0.85rem;
@@ -235,7 +235,7 @@
     }
     .release-summary-text {
       font-size: 0.93rem;
-      color: var(--muted);
+      color: var(--dark-text);
       line-height: 1.7;
       flex: 1;
       min-width: 180px;
@@ -268,11 +268,11 @@
       padding: 7px 13px;
       font-size: 0.8rem;
       font-weight: 600;
-      color: var(--text);
+      color: var(--indigo);
     }
     .dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
     .dot-new         { background: var(--orange); }
-    .dot-fix         { background: #4B5CB8; }
+    .dot-fix         { background: var(--indigo); }
     .dot-enhancement { background: #2E8B57; }
 
     /* ── UPDATES ── */
@@ -319,19 +319,19 @@
       min-width: 84px;
       text-align: center;
     }
-    .badge-new         { background: var(--new-bg); color: var(--orange); }
-    .badge-fix         { background: var(--fix-bg); color: #4B5CB8; }
+    .badge-new         { background: var(--peach); color: var(--orange); }
+    .badge-fix         { background: var(--fix-bg); color: var(--indigo); }
     .badge-enhancement { background: var(--enh-bg); color: #2E8B57; }
     .update-content { flex: 1; }
     .update-title {
       font-weight: 600;
       font-size: 0.93rem;
-      color: var(--text);
+      color: var(--indigo);
       margin-bottom: 4px;
     }
     .update-body {
       font-size: 0.865rem;
-      color: var(--muted);
+      color: var(--dark-text);
       line-height: 1.65;
     }
 
@@ -364,7 +364,7 @@
     .empty-state p {
       font-size: 0.95rem;
       font-weight: 600;
-      color: var(--text);
+      color: var(--indigo);
       margin-bottom: 6px;
     }
     .empty-state span {
@@ -449,8 +449,8 @@
 <body>
 
 <header>
-  <div class="brand"><span id="product-name">Ascend 2.0</span> Release Notes</div>
-  <div class="header-sub">What's new, improved, and fixed. Updated with each release.</div>
+  <div class="brand"><span id="product-name">Ascend&reg;</span> Release Notes</div>
+  <div class="header-sub">What changed and when. Updated every release.</div>
   <button class="hamburger" id="hamburger" aria-label="Open menu">
     <span></span><span></span><span></span>
   </button>
@@ -469,7 +469,7 @@
 </div>
 
 <footer>
-  Ascend by <a href="https://claritasrx.com" target="_blank">ClaritasRx</a> &nbsp;·&nbsp; Sourced from GitHub &nbsp;·&nbsp; Updates automatically with each release
+  Ascend&reg; by <a href="https://claritasrx.com" target="_blank">ClaritasRx</a> &nbsp;·&nbsp; Sourced from GitHub &nbsp;·&nbsp; Updates automatically with each release &nbsp;·&nbsp; <a href="https://www.claritasrx.com/schedule-demo/" target="_blank">Request Demo</a>
 </footer>
 
 <script>
@@ -498,7 +498,7 @@
   async function init() {
     try {
       manifest = await fetchJson(BASE_URL + 'releases/manifest.json');
-      if (manifest.product) document.getElementById('product-name').textContent = manifest.product;
+      if (manifest.product) document.getElementById('product-name').innerHTML = manifest.product;
       buildSidebar();
       selectModule(manifest.modules[0].id);
     } catch (e) {
