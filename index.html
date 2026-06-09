@@ -7,23 +7,20 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet"/>
   <style>
     :root {
-      --navy:        #1B1F3B;
-      --navy-mid:    #252A4A;
-      --navy-light:  #2E3460;
-      --orange:      #E8622A;
-      --orange-light:#F47B4F;
-      --cream:       #F7F5F0;
-      --white:       #FFFFFF;
-      --text:        #1B1F3B;
-      --muted:       #6B7280;
-      --border:      #E5E2DA;
-      --new-bg:      #FFF3EE;
-      --fix-bg:      #F0F4FF;
-      --enh-bg:      #F0FAF4;
+      --navy:       #1B1F3B;
+      --orange:     #E8622A;
+      --cream:      #F7F5F0;
+      --white:      #FFFFFF;
+      --text:       #1B1F3B;
+      --muted:      #6B7280;
+      --border:     #E5E2DA;
+      --sidebar-w:  220px;
+      --new-bg:     #FFF3EE;
+      --fix-bg:     #F0F4FF;
+      --enh-bg:     #F0FAF4;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     html { scroll-behavior: smooth; }
 
     body {
@@ -31,145 +28,177 @@
       background: var(--cream);
       color: var(--text);
       min-height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
 
     /* ── HEADER ── */
     header {
       background: var(--navy);
-      padding: 52px 0 0;
+      padding: 40px 48px;
       position: relative;
       overflow: hidden;
+      flex-shrink: 0;
     }
     header::before {
       content: '';
       position: absolute;
-      right: -100px; top: -100px;
-      width: 420px; height: 420px;
+      right: -80px; top: -80px;
+      width: 380px; height: 380px;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(232,98,42,0.3) 0%, transparent 68%);
+      background: radial-gradient(circle, rgba(232,98,42,0.28) 0%, transparent 68%);
       pointer-events: none;
     }
     header::after {
       content: '';
       position: absolute;
-      left: -60px; bottom: -60px;
-      width: 280px; height: 280px;
+      left: -50px; bottom: -50px;
+      width: 240px; height: 240px;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(75,92,184,0.18) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(75,92,184,0.15) 0%, transparent 70%);
       pointer-events: none;
     }
-
-    .header-inner {
-      max-width: 1000px;
-      margin: 0 auto;
-      padding: 0 40px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .header-top {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 24px;
-      margin-bottom: 40px;
-      flex-wrap: wrap;
-    }
-
     .brand {
       font-family: 'DM Serif Display', serif;
-      font-size: 2.5rem;
+      font-size: 2.2rem;
       color: var(--white);
-      letter-spacing: -0.5px;
+      letter-spacing: -0.4px;
       line-height: 1;
+      position: relative; z-index: 1;
     }
     .brand span { color: var(--orange); }
     .header-sub {
-      margin-top: 10px;
-      color: rgba(255,255,255,0.5);
-      font-size: 0.9rem;
+      margin-top: 8px;
+      color: rgba(255,255,255,0.48);
+      font-size: 0.88rem;
       font-weight: 300;
-      letter-spacing: 0.01em;
+      position: relative; z-index: 1;
     }
 
-    /* ── MODULE TABS ── */
-    .module-tabs {
+    /* ── BODY LAYOUT ── */
+    .page-body {
       display: flex;
-      flex-wrap: wrap;
-      gap: 0;
-      position: relative;
-      z-index: 1;
+      flex: 1;
+      min-height: 0;
     }
 
-    .tab-btn {
+    /* ── SIDEBAR ── */
+    aside {
+      width: var(--sidebar-w);
       flex-shrink: 0;
+      background: var(--white);
+      border-right: 1.5px solid var(--border);
+      padding: 32px 0;
+      position: sticky;
+      top: 0;
+      height: calc(100vh - 112px); /* viewport minus header */
+      overflow-y: auto;
+    }
+
+    .sidebar-label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding: 0 20px 12px;
+    }
+
+    .nav-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      width: 100%;
       background: none;
       border: none;
       cursor: pointer;
       font-family: 'DM Sans', sans-serif;
-      font-size: 0.85rem;
+      font-size: 0.88rem;
       font-weight: 500;
-      color: rgba(255,255,255,0.5);
-      padding: 14px 22px;
+      color: var(--muted);
+      padding: 10px 20px;
+      text-align: left;
       position: relative;
-      transition: color 0.2s;
-      white-space: nowrap;
-      letter-spacing: 0.01em;
+      transition: color 0.15s, background 0.15s;
+      border-radius: 0;
     }
-    .tab-btn::after {
+    .nav-item::before {
       content: '';
       position: absolute;
-      bottom: 0; left: 0; right: 0;
-      height: 2.5px;
+      left: 0; top: 0; bottom: 0;
+      width: 3px;
       background: var(--orange);
-      border-radius: 2px 2px 0 0;
-      transform: scaleX(0);
-      transition: transform 0.2s;
+      border-radius: 0 2px 2px 0;
+      opacity: 0;
+      transition: opacity 0.15s;
     }
-    .tab-btn:hover { color: rgba(255,255,255,0.85); }
-    .tab-btn.active {
-      color: var(--white);
+    .nav-item:hover {
+      background: var(--cream);
+      color: var(--text);
+    }
+    .nav-item.active {
+      color: var(--orange);
       font-weight: 600;
+      background: var(--new-bg);
     }
-    .tab-btn.active::after { transform: scaleX(1); }
+    .nav-item.active::before { opacity: 1; }
 
-    /* ── MAIN ── */
+    .nav-icon {
+      width: 28px; height: 28px;
+      border-radius: 7px;
+      background: var(--cream);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      transition: background 0.15s;
+    }
+    .nav-item.active .nav-icon { background: rgba(232,98,42,0.12); }
+    .nav-icon svg {
+      width: 14px; height: 14px;
+      stroke: var(--muted);
+      fill: none;
+      stroke-width: 1.7;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      transition: stroke 0.15s;
+    }
+    .nav-item.active .nav-icon svg { stroke: var(--orange); }
+
+    /* ── MAIN CONTENT ── */
     main {
-      max-width: 1000px;
-      margin: 0 auto;
-      padding: 44px 40px 96px;
+      flex: 1;
+      padding: 40px 48px 80px;
+      min-width: 0;
     }
 
     /* ── RELEASE PICKER ROW ── */
     .release-picker-row {
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       justify-content: space-between;
       gap: 16px;
-      margin-bottom: 36px;
+      margin-bottom: 32px;
       flex-wrap: wrap;
     }
-
     .module-title-area h2 {
       font-family: 'DM Serif Display', serif;
-      font-size: 1.6rem;
+      font-size: 1.7rem;
       color: var(--text);
     }
     .module-title-area p {
       font-size: 0.85rem;
       color: var(--muted);
-      margin-top: 3px;
+      margin-top: 4px;
     }
-
     .picker-group {
       display: flex;
       align-items: center;
       gap: 10px;
+      padding-top: 4px;
     }
     .picker-group label {
-      font-size: 0.75rem;
-      font-weight: 600;
-      letter-spacing: 0.08em;
+      font-size: 0.73rem;
+      font-weight: 700;
+      letter-spacing: 0.09em;
       text-transform: uppercase;
       color: var(--muted);
     }
@@ -178,7 +207,7 @@
       background: var(--white);
       border: 1.5px solid var(--border);
       border-radius: 8px;
-      padding: 8px 36px 8px 14px;
+      padding: 8px 34px 8px 13px;
       font-family: inherit;
       font-size: 0.88rem;
       font-weight: 500;
@@ -186,7 +215,7 @@
       cursor: pointer;
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath d='M2 4l4 4 4-4' stroke='%236B7280' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
       background-repeat: no-repeat;
-      background-position: right 12px center;
+      background-position: right 11px center;
       transition: border-color 0.15s;
     }
     .release-select:focus { outline: 2px solid var(--orange); outline-offset: 2px; border-color: var(--orange); }
@@ -195,123 +224,38 @@
     .release-meta {
       background: var(--white);
       border: 1.5px solid var(--border);
-      border-radius: 14px;
-      padding: 28px 32px;
-      margin-bottom: 24px;
+      border-radius: 12px;
+      padding: 24px 28px;
+      margin-bottom: 20px;
       display: flex;
       align-items: flex-start;
       justify-content: space-between;
-      gap: 24px;
+      gap: 20px;
       flex-wrap: wrap;
     }
     .release-summary-text {
-      font-size: 0.95rem;
+      font-size: 0.93rem;
       color: var(--muted);
       line-height: 1.7;
       flex: 1;
-      min-width: 200px;
+      min-width: 180px;
     }
     .release-date-badge {
       background: var(--navy);
       color: var(--white);
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       font-weight: 500;
-      padding: 6px 16px;
+      padding: 5px 14px;
       border-radius: 20px;
       white-space: nowrap;
       flex-shrink: 0;
     }
 
-    /* ── LEGEND ── */
-    .legend {
-      display: flex;
-      gap: 18px;
-      margin-bottom: 24px;
-      flex-wrap: wrap;
-    }
-    .legend-item {
-      display: flex;
-      align-items: center;
-      gap: 7px;
-      font-size: 0.8rem;
-      color: var(--muted);
-      font-weight: 500;
-    }
-    .dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
-    .dot-new { background: var(--orange); }
-    .dot-fix { background: #4B5CB8; }
-    .dot-enhancement { background: #2E8B57; }
-
-    /* ── UPDATES LIST ── */
-    .updates-list {
-      background: var(--white);
-      border: 1.5px solid var(--border);
-      border-radius: 14px;
-      overflow: hidden;
-    }
-
-    .updates-section-header {
-      padding: 16px 28px 12px;
-      background: #FAFAF8;
-      border-bottom: 1px solid var(--border);
-      font-size: 0.72rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--muted);
-    }
-
-    .update-row {
-      display: flex;
-      gap: 20px;
-      padding: 20px 28px;
-      border-bottom: 1px solid var(--border);
-      align-items: flex-start;
-      transition: background 0.15s;
-      animation: fadeUp 0.25s ease both;
-    }
-    .update-row:last-child { border-bottom: none; }
-    .update-row:hover { background: #FAFAF8; }
-
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(6px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    .badge {
-      flex-shrink: 0;
-      font-size: 0.67rem;
-      font-weight: 700;
-      letter-spacing: 0.07em;
-      text-transform: uppercase;
-      padding: 4px 10px;
-      border-radius: 5px;
-      margin-top: 2px;
-      min-width: 86px;
-      text-align: center;
-    }
-    .badge-new         { background: var(--new-bg); color: var(--orange); }
-    .badge-fix         { background: var(--fix-bg); color: #4B5CB8; }
-    .badge-enhancement { background: var(--enh-bg); color: #2E8B57; }
-
-    .update-content { flex: 1; }
-    .update-title {
-      font-weight: 600;
-      font-size: 0.95rem;
-      color: var(--text);
-      margin-bottom: 5px;
-    }
-    .update-body {
-      font-size: 0.875rem;
-      color: var(--muted);
-      line-height: 1.65;
-    }
-
-    /* ── STATS ROW ── */
+    /* ── STATS ── */
     .stats-row {
       display: flex;
-      gap: 12px;
-      margin-bottom: 24px;
+      gap: 10px;
+      margin-bottom: 20px;
       flex-wrap: wrap;
     }
     .stat-pill {
@@ -321,19 +265,82 @@
       background: var(--white);
       border: 1.5px solid var(--border);
       border-radius: 8px;
-      padding: 8px 14px;
-      font-size: 0.82rem;
+      padding: 7px 13px;
+      font-size: 0.8rem;
       font-weight: 600;
       color: var(--text);
     }
-    .stat-pill .dot { width: 7px; height: 7px; }
+    .dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+    .dot-new         { background: var(--orange); }
+    .dot-fix         { background: #4B5CB8; }
+    .dot-enhancement { background: #2E8B57; }
+
+    /* ── UPDATES ── */
+    .updates-list {
+      background: var(--white);
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .updates-section-header {
+      padding: 13px 24px 10px;
+      background: #FAFAF8;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .update-row {
+      display: flex;
+      gap: 18px;
+      padding: 18px 24px;
+      border-bottom: 1px solid var(--border);
+      align-items: flex-start;
+      transition: background 0.12s;
+      animation: fadeUp 0.22s ease both;
+    }
+    .update-row:last-child { border-bottom: none; }
+    .update-row:hover { background: #FAFAF8; }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(5px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .badge {
+      flex-shrink: 0;
+      font-size: 0.66rem;
+      font-weight: 700;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      padding: 4px 9px;
+      border-radius: 5px;
+      margin-top: 1px;
+      min-width: 84px;
+      text-align: center;
+    }
+    .badge-new         { background: var(--new-bg); color: var(--orange); }
+    .badge-fix         { background: var(--fix-bg); color: #4B5CB8; }
+    .badge-enhancement { background: var(--enh-bg); color: #2E8B57; }
+    .update-content { flex: 1; }
+    .update-title {
+      font-weight: 600;
+      font-size: 0.93rem;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+    .update-body {
+      font-size: 0.865rem;
+      color: var(--muted);
+      line-height: 1.65;
+    }
 
     /* ── STATES ── */
     .state-msg {
       text-align: center;
       padding: 80px 0;
       color: var(--muted);
-      font-size: 0.95rem;
+      font-size: 0.93rem;
     }
     .spinner {
       width: 26px; height: 26px;
@@ -341,100 +348,106 @@
       border-top-color: var(--orange);
       border-radius: 50%;
       animation: spin 0.7s linear infinite;
-      margin: 0 auto 16px;
+      margin: 0 auto 14px;
     }
     @keyframes spin { to { transform: rotate(360deg); } }
 
     .empty-state {
       text-align: center;
-      padding: 60px 0;
-      color: var(--muted);
+      padding: 64px 0;
     }
     .empty-state svg {
-      width: 40px; height: 40px;
-      stroke: var(--border);
+      width: 38px; height: 38px;
+      stroke: #D1CEC7;
       margin-bottom: 14px;
     }
     .empty-state p {
-      font-size: 0.97rem;
-      font-weight: 500;
+      font-size: 0.95rem;
+      font-weight: 600;
       color: var(--text);
       margin-bottom: 6px;
     }
     .empty-state span {
-      font-size: 0.85rem;
+      font-size: 0.84rem;
       color: var(--muted);
     }
 
     /* ── FOOTER ── */
     footer {
       text-align: center;
-      padding: 28px;
+      padding: 24px;
       font-size: 0.78rem;
       color: var(--muted);
       border-top: 1px solid var(--border);
+      background: var(--white);
+      flex-shrink: 0;
     }
     footer a { color: var(--orange); text-decoration: none; }
 
     /* ── RESPONSIVE ── */
-    @media (max-width: 600px) {
-      .header-inner { padding: 0 20px; }
-      main { padding: 32px 20px 64px; }
-      .brand { font-size: 1.9rem; }
-      .tab-btn { padding: 12px 16px; font-size: 0.8rem; }
-      .release-meta { padding: 20px; }
-      .update-row { padding: 16px 20px; gap: 12px; }
-      .updates-section-header { padding: 12px 20px; }
+    @media (max-width: 700px) {
+      header { padding: 28px 24px; }
+      .page-body { flex-direction: column; }
+      aside {
+        width: 100%;
+        height: auto;
+        position: static;
+        border-right: none;
+        border-bottom: 1.5px solid var(--border);
+        padding: 16px 0;
+        display: flex;
+        flex-direction: row;
+        overflow-x: auto;
+        gap: 0;
+      }
+      .sidebar-label { display: none; }
+      .nav-item { white-space: nowrap; padding: 8px 16px; border-radius: 0; }
+      .nav-item::before { top: auto; bottom: 0; left: 0; right: 0; width: 100%; height: 2.5px; border-radius: 2px 2px 0 0; }
+      .nav-icon { display: none; }
+      main { padding: 28px 20px 60px; }
     }
   </style>
 </head>
 <body>
 
 <header>
-  <div class="header-inner">
-    <div class="header-top">
-      <div>
-        <div class="brand"><span id="product-name">Ascend</span> Release Notes</div>
-        <div class="header-sub">What's new, improved, and fixed. Updated with each release.</div>
-      </div>
-    </div>
-    <nav class="module-tabs" id="module-tabs">
-      <div class="state-msg" style="padding:14px 0;color:rgba(255,255,255,0.4);font-size:0.85rem;">Loading modules…</div>
-    </nav>
-  </div>
+  <div class="brand"><span id="product-name">Ascend</span> Release Notes</div>
+  <div class="header-sub">What's new, improved, and fixed. Updated with each release.</div>
 </header>
 
-<main id="main-content">
-  <div class="state-msg"><div class="spinner"></div>Loading release notes…</div>
-</main>
+<div class="page-body">
+  <aside id="sidebar">
+    <div class="sidebar-label">Modules</div>
+    <div class="state-msg" style="padding:16px 20px;font-size:0.82rem;text-align:left;">Loading…</div>
+  </aside>
+
+  <main id="main-content">
+    <div class="state-msg"><div class="spinner"></div>Loading release notes…</div>
+  </main>
+</div>
 
 <footer>
   Ascend by <a href="https://claritasrx.com" target="_blank">ClaritasRx</a> &nbsp;·&nbsp; Sourced from GitHub &nbsp;·&nbsp; Updates automatically with each release
 </footer>
 
 <script>
-  // ─────────────────────────────────────────────────────────────────
-  // CONFIG — update this to your raw GitHub URL once the repo is live
-  // e.g. https://raw.githubusercontent.com/claritasrx/ascend-release-notes/main/
-  // ─────────────────────────────────────────────────────────────────
   const BASE_URL = './';
 
   const ICONS = {
-    'core-app':             `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>`,
-    'data-aggregation':     `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v6c0 1.66 4 3 9 3s9-1.34 9-3V5"/><path d="M3 11v6c0 1.66 4 3 9 3s9-1.34 9-3v-6"/></svg>`,
-    'access-analytics':     `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>`,
-    'patient-watchtower':   `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12S5 4 12 4s11 8 11 8-4 8-11 8S1 12 1 12z"/><circle cx="12" cy="12" r="3"/></svg>`,
-    'patient-services-crm': `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>`,
-    'consent-clearinghouse': `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>`,
+    'core-app':              `<svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>`,
+    'data-aggregation':      `<svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v6c0 1.66 4 3 9 3s9-1.34 9-3V5"/><path d="M3 11v6c0 1.66 4 3 9 3s9-1.34 9-3v-6"/></svg>`,
+    'access-analytics':      `<svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>`,
+    'patient-watchtower':    `<svg viewBox="0 0 24 24"><path d="M1 12S5 4 12 4s11 8 11 8-4 8-11 8S1 12 1 12z"/><circle cx="12" cy="12" r="3"/></svg>`,
+    'patient-services-crm':  `<svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>`,
+    'consent-clearinghouse': `<svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>`,
   };
 
   let manifest = null;
-  let activeModuleId = null;
   let moduleCache = {};
 
   async function fetchJson(url) {
     const res = await fetch(url + '?_=' + Date.now());
-    if (!res.ok) throw new Error(`HTTP ${res.status} — ${url}`);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
     return res.json();
   }
 
@@ -442,35 +455,33 @@
     try {
       manifest = await fetchJson(BASE_URL + 'releases/manifest.json');
       if (manifest.product) document.getElementById('product-name').textContent = manifest.product;
-      buildTabs();
+      buildSidebar();
       selectModule(manifest.modules[0].id);
     } catch (e) {
       document.getElementById('main-content').innerHTML =
         `<div class="state-msg">⚠️ Could not load release data.<br><small style="opacity:0.6">${e.message}</small></div>`;
-      document.getElementById('module-tabs').innerHTML = '';
+      document.getElementById('sidebar').innerHTML = '';
     }
   }
 
-  function buildTabs() {
-    const nav = document.getElementById('module-tabs');
-    nav.innerHTML = '';
+  function buildSidebar() {
+    const aside = document.getElementById('sidebar');
+    aside.innerHTML = '<div class="sidebar-label">Modules</div>';
     manifest.modules.forEach(mod => {
+      const icon = ICONS[mod.id] || ICONS['core-app'];
       const btn = document.createElement('button');
-      btn.className = 'tab-btn';
+      btn.className = 'nav-item';
       btn.dataset.id = mod.id;
-      btn.textContent = mod.name;
+      btn.innerHTML = `<span class="nav-icon">${icon}</span>${mod.name}`;
       btn.addEventListener('click', () => selectModule(mod.id));
-      nav.appendChild(btn);
+      aside.appendChild(btn);
     });
   }
 
   async function selectModule(id) {
-    activeModuleId = id;
-
-    // Update tab active state
-    document.querySelectorAll('.tab-btn').forEach(b => {
-      b.classList.toggle('active', b.dataset.id === id);
-    });
+    document.querySelectorAll('.nav-item').forEach(b =>
+      b.classList.toggle('active', b.dataset.id === id)
+    );
 
     const mod = manifest.modules.find(m => m.id === id);
     if (!mod) return;
@@ -485,7 +496,7 @@
       renderModule(mod, moduleCache[id]);
     } catch (e) {
       document.getElementById('main-content').innerHTML =
-        `<div class="state-msg">⚠️ Could not load ${mod.name} data.<br><small style="opacity:0.6">${e.message}</small></div>`;
+        `<div class="state-msg">⚠️ Could not load ${mod.name}.<br><small style="opacity:0.6">${e.message}</small></div>`;
     }
   }
 
@@ -543,32 +554,27 @@
       <div class="release-meta">
         <div class="release-summary-text">${r.summary}</div>
         <div class="release-date-badge">${r.date}</div>
-      </div>
-    `;
+      </div>`;
 
-    // Stats
     const stats = [];
-    if (newItems.length)  stats.push(`<div class="stat-pill"><span class="dot dot-new"></span>${newItems.length} New Feature${newItems.length !== 1 ? 's' : ''}</div>`);
-    if (enhItems.length)  stats.push(`<div class="stat-pill"><span class="dot dot-enhancement"></span>${enhItems.length} Enhancement${enhItems.length !== 1 ? 's' : ''}</div>`);
-    if (fixItems.length)  stats.push(`<div class="stat-pill"><span class="dot dot-fix"></span>${fixItems.length} Fix${fixItems.length !== 1 ? 'es' : ''}</div>`);
-
+    if (newItems.length) stats.push(`<div class="stat-pill"><span class="dot dot-new"></span>${newItems.length} New Feature${newItems.length !== 1 ? 's' : ''}</div>`);
+    if (enhItems.length) stats.push(`<div class="stat-pill"><span class="dot dot-enhancement"></span>${enhItems.length} Enhancement${enhItems.length !== 1 ? 's' : ''}</div>`);
+    if (fixItems.length) stats.push(`<div class="stat-pill"><span class="dot dot-fix"></span>${fixItems.length} Fix${fixItems.length !== 1 ? 'es' : ''}</div>`);
     if (stats.length) html += `<div class="stats-row">${stats.join('')}</div>`;
 
     html += `<div class="updates-list">`;
-
-    const sections = [
-      { label: "What's New",       items: newItems,  type: 'new' },
-      { label: 'Enhancements',     items: enhItems,  type: 'enhancement' },
-      { label: 'Fixes',            items: fixItems,  type: 'fix' },
-    ];
-
-    sections.forEach(sec => {
+    [
+      { label: "What's New",  items: newItems, type: 'new' },
+      { label: 'Enhancements', items: enhItems, type: 'enhancement' },
+      { label: 'Fixes',        items: fixItems, type: 'fix' },
+    ].forEach(sec => {
       if (!sec.items.length) return;
       html += `<div class="updates-section-header">${sec.label}</div>`;
       sec.items.forEach((u, i) => {
+        const label = u.type === 'new' ? 'New Feature' : u.type === 'fix' ? 'Fix' : 'Enhancement';
         html += `
           <div class="update-row" style="animation-delay:${i * 0.04}s">
-            <span class="badge badge-${u.type}">${u.type === 'new' ? 'New Feature' : u.type === 'fix' ? 'Fix' : 'Enhancement'}</span>
+            <span class="badge badge-${u.type}">${label}</span>
             <div class="update-content">
               <div class="update-title">${u.title}</div>
               <div class="update-body">${u.body}</div>
@@ -576,8 +582,8 @@
           </div>`;
       });
     });
-
     html += `</div>`;
+
     document.getElementById('release-body').innerHTML = html;
   }
 
