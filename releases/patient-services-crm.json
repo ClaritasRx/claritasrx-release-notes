@@ -2,27 +2,35 @@
   "module": "Patient Services CRM",
   "releases": [
     {
-      "version": "2026.5",
-      "date": "May 28, 2026",
-      "summary": "Full consent management is now live, alongside new navigation structure, saved views platform-wide, and a broad set of bug fixes across enrollment, tasks, inquiries, and external communications.",
+      "version": "2026.6",
+      "date": "June 11, 2026",
+      "summary": "New team territory mapping plus directory and export improvements.",
       "updates": [
-        { "type": "new", "title": "Consent & Compliance Hub (CCH)",      "body": "Full consent management is now live — view consent health at a glance, drill into patient-level consent details, access evidence documents, and run the Alignment Report to identify misalignment across your book of business. Navigation access is entitlement-controlled per role." },
-        { "type": "new", "title": "Save Views — Platform-wide",          "body": "Save and reload your filtered list views across Patient Tracking, Journey Board, Tasks, Inquiries, Interactions, User Management, HCP, HCO, Contacts, and Infusion Sites." },
-        { "type": "new", "title": "Patient Profile — HCO Contacts",      "body": "Relevant HCO contacts are now surfaced directly on the patient profile for faster outreach." },
-        { "type": "new", "title": "Contacts Listing — Fax Number",       "body": "Fax numbers are now visible in the Contacts listing view." },
-        { "type": "new", "title": "Navigation Updates",                  "body": "Product navigation has been restructured to align with the ClaritasRx product offering model." },
-        { "type": "new", "title": "Data Hub (SuperAdmin)",               "body": "A dedicated Data Hub view is now available for Management App and SuperAdmin users." },
-        { "type": "fix", "title": "Enrollment",                         "body": "Editing an enrollment now correctly updates the enrollment-created prescription, not SP-ingested ones. Also fixed a separate issue where editing primary insurance created duplicate primary insurance records." },
-        { "type": "fix", "title": "Historical Patient Write-backs",      "body": "Editing a historical patient profile now updates the existing patient in Ascend rather than creating a new record." },
-        { "type": "fix", "title": "Consent Status",                     "body": "Fixed a bug where a patient's consent status incorrectly reverted to \"non-consented\" after a valid enrollment." },
-        { "type": "fix", "title": "Patient Phone Numbers",              "body": "Primary contact phone numbers now display correctly; some patients were showing alternate or caregiver numbers in the primary contact field." },
-        { "type": "fix", "title": "Tasks — Assignee Dropdown",          "body": "The Assignee dropdown now correctly shows team members when creating a task (previously showed empty for some teams)." },
-        { "type": "fix", "title": "Tasks — Role Permissions",           "body": "Fixed 403/500 errors when creating tasks as FRM and certain SP-role users." },
-        { "type": "fix", "title": "Inquiries — Document Upload",        "body": "SP users can now upload documents in Inquiries without hitting a 403 error." },
-        { "type": "fix", "title": "External Communication",             "body": "Fixed the \"To\" dropdown in new SMS conversations — options now populate on click without requiring the user to type first. Also resolved null display names and missing contact state in the chat window." },
-        { "type": "fix", "title": "Patient Tracking — Days Pending Filter", "body": "Fixed a server error when applying the \"Days Pending in Bucket\" filter on Patient Tracking." },
-        { "type": "fix", "title": "Patient Status — Role Visibility",   "body": "Patient status column now renders correctly for PAL role users." },
-        { "type": "fix", "title": "HCP — File Export",                  "body": "Downloading patient data from the HCP Patients tab now works correctly for both XLS and CSV formats." }
+        {
+          "type": "new",
+          "title": "Team Map & Territory Assignment",
+          "body": "When creating an FRM or Field Sales team, admins can now assign a geographic Map and Territory to scope the team."
+        },
+        {
+          "type": "enhancement",
+          "title": "HCO Contact Details on Profile",
+          "body": "HCO profiles now display phone, fax, and email directly on the page."
+        },
+        {
+          "type": "enhancement",
+          "title": "Smarter Directory Search",
+          "body": "Search in HCO, Contact, and address filters now returns matches across all records, not just the first page."
+        },
+        {
+          "type": "fix",
+          "title": "Task Export",
+          "body": "CRM Tasks export to CSV/Excel now includes the Description column."
+        },
+        {
+          "type": "fix",
+          "title": "HCP Directory Stability",
+          "body": "The HCP directory no longer errors when an affiliated account has been removed."
+        }
       ]
     }
   ]

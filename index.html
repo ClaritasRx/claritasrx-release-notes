@@ -95,14 +95,11 @@
     /* ── MODULE TABS ── */
     .module-tabs {
       display: flex;
+      flex-wrap: wrap;
       gap: 0;
-      overflow-x: auto;
-      scrollbar-width: none;
       position: relative;
       z-index: 1;
-      padding-right: 40px;
     }
-    .module-tabs::-webkit-scrollbar { display: none; }
 
     .tab-btn {
       flex-shrink: 0;
@@ -358,6 +355,16 @@
       stroke: var(--border);
       margin-bottom: 14px;
     }
+    .empty-state p {
+      font-size: 0.97rem;
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+    .empty-state span {
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
 
     /* ── FOOTER ── */
     footer {
@@ -484,6 +491,7 @@
 
   function renderModule(mod, data) {
     const releases = data.releases || [];
+
     if (!releases.length) {
       document.getElementById('main-content').innerHTML = `
         <div class="release-picker-row">
@@ -494,17 +502,15 @@
         </div>
         <div class="empty-state">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 8v4m0 4h.01"/></svg>
-          <p>No releases yet for this module.</p>
+          <p>No release notes yet for this module.</p>
+          <span>Check back after the next release.</span>
         </div>`;
       return;
     }
 
-    // Build select options
     const selectOptions = releases.map((r, i) =>
       `<option value="${i}">${r.date}</option>`
     ).join('');
-
-    const icon = ICONS[mod.id] || ICONS['core-app'];
 
     document.getElementById('main-content').innerHTML = `
       <div class="release-picker-row">

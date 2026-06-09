@@ -1,13 +1,4 @@
 {
   "module": "Access Analytics",
-  "releases": [
-    {
-      "version": "2026.5",
-      "date": "May 28, 2026",
-      "summary": "Expands self-service analytics capabilities with new report types and filtering improvements.",
-      "updates": [
-        { "type": "new", "title": "Placeholder — add your Access Analytics updates here", "body": "Update this file with your Access Analytics release content for 2026.5." }
-      ]
-    }
-  ]
+  "releases": []
 }

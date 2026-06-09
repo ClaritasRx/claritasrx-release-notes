@@ -1,13 +1,4 @@
 {
   "module": "Data Aggregation",
-  "releases": [
-    {
-      "version": "2026.5",
-      "date": "May 28, 2026",
-      "summary": "Expands specialty pharmacy coverage and accelerates data availability across distribution partners.",
-      "updates": [
-        { "type": "new", "title": "Expanded Specialty Pharmacy Coverage", "body": "Onboarded additional distribution and specialty pharmacy data partners, broadening fill and dispense visibility." }
-      ]
-    }
-  ]
+  "releases": []
 }

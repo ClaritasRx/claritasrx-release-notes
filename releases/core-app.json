@@ -2,13 +2,15 @@
   "module": "Core App",
   "releases": [
     {
-      "version": "2026.5",
-      "date": "May 28, 2026",
-      "summary": "Introduces saved views and a significantly faster global search experience, alongside a fix for large export timeouts.",
+      "version": "2026.6",
+      "date": "June 11, 2026",
+      "summary": "Reliability fix for exporting user lists.",
       "updates": [
-        { "type": "new",         "title": "Saved Views",              "body": "Save any filtered dashboard configuration and share it with your team, so recurring analyses are one click away." },
-        { "type": "enhancement", "title": "Faster Global Search",     "body": "Cross-platform search now returns results up to 3x faster and includes patient program and payer name matches." },
-        { "type": "fix",         "title": "Large Export Reliability", "body": "Resolved an issue where exports spanning very wide date ranges could occasionally time out." }
+        {
+          "type": "fix",
+          "title": "User List Export",
+          "body": "Exporting the User Management list to Excel now works even when no saved view is selected."
+        }
       ]
     }
   ]
