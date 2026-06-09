@@ -384,26 +384,64 @@
     }
     footer a { color: var(--orange); text-decoration: none; }
 
+    /* ── HAMBURGER (mobile only) ── */
+    .hamburger {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+      flex-direction: column;
+      gap: 5px;
+      position: absolute;
+      right: 24px;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 200;
+    }
+    .hamburger span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: rgba(255,255,255,0.8);
+      border-radius: 2px;
+      transition: all 0.22s ease;
+      transform-origin: center;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    .drawer-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.35);
+      z-index: 100;
+      opacity: 0;
+      transition: opacity 0.22s ease;
+    }
+    .drawer-overlay.visible { opacity: 1; }
+
     /* ── RESPONSIVE ── */
     @media (max-width: 700px) {
-      header { padding: 28px 24px; }
+      header { padding: 24px 24px; position: relative; }
+      .hamburger { display: flex; }
       .page-body { flex-direction: column; }
       aside {
-        width: 100%;
-        height: auto;
-        position: static;
-        border-right: none;
-        border-bottom: 1.5px solid var(--border);
-        padding: 16px 0;
-        display: flex;
-        flex-direction: row;
-        overflow-x: auto;
-        gap: 0;
+        position: fixed;
+        top: 0; left: 0;
+        width: 260px;
+        height: 100vh;
+        z-index: 150;
+        transform: translateX(-100%);
+        transition: transform 0.25s ease;
+        border-right: 1.5px solid var(--border);
+        padding-top: 64px;
+        overflow-y: auto;
       }
-      .sidebar-label { display: none; }
-      .nav-item { white-space: nowrap; padding: 8px 16px; border-radius: 0; }
-      .nav-item::before { top: auto; bottom: 0; left: 0; right: 0; width: 100%; height: 2.5px; border-radius: 2px 2px 0 0; }
-      .nav-icon { display: none; }
+      aside.open { transform: translateX(0); }
+      .drawer-overlay { display: block; }
       main { padding: 28px 20px 60px; }
     }
   </style>
@@ -411,9 +449,13 @@
 <body>
 
 <header>
-  <div class="brand"><span id="product-name">Ascend</span> Release Notes</div>
+  <div class="brand"><span id="product-name">Ascend 2.0</span> Release Notes</div>
   <div class="header-sub">What's new, improved, and fixed. Updated with each release.</div>
+  <button class="hamburger" id="hamburger" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
 </header>
+<div class="drawer-overlay" id="drawer-overlay"></div>
 
 <div class="page-body">
   <aside id="sidebar">
@@ -435,7 +477,9 @@
 
   const ICONS = {
     'core-app':              `<svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>`,
-    'data-aggregation':      `<svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v6c0 1.66 4 3 9 3s9-1.34 9-3V5"/><path d="M3 11v6c0 1.66 4 3 9 3s9-1.34 9-3v-6"/></svg>`,
+    'data-aggregation':               `<svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v6c0 1.66 4 3 9 3s9-1.34 9-3V5"/><path d="M3 11v6c0 1.66 4 3 9 3s9-1.34 9-3v-6"/></svg>`,
+    'data-aggregation-platform':      `<svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v6c0 1.66 4 3 9 3s9-1.34 9-3V5"/><path d="M3 11v6c0 1.66 4 3 9 3s9-1.34 9-3v-6"/></svg>`,
+    'data-aggregation-dashboards':    `<svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/></svg>`,
     'access-analytics':      `<svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>`,
     'patient-watchtower':    `<svg viewBox="0 0 24 24"><path d="M1 12S5 4 12 4s11 8 11 8-4 8-11 8S1 12 1 12z"/><circle cx="12" cy="12" r="3"/></svg>`,
     'patient-services-crm':  `<svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>`,
@@ -586,6 +630,37 @@
 
     document.getElementById('release-body').innerHTML = html;
   }
+
+  // ── HAMBURGER ──
+  const hamburger = document.getElementById('hamburger');
+  const sidebar   = document.getElementById('sidebar');
+  const overlay   = document.getElementById('drawer-overlay');
+
+  function openDrawer() {
+    hamburger.classList.add('open');
+    sidebar.classList.add('open');
+    overlay.classList.add('visible');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeDrawer() {
+    hamburger.classList.remove('open');
+    sidebar.classList.remove('open');
+    overlay.classList.remove('visible');
+    document.body.style.overflow = '';
+  }
+
+  hamburger.addEventListener('click', () => {
+    sidebar.classList.contains('open') ? closeDrawer() : openDrawer();
+  });
+  overlay.addEventListener('click', closeDrawer);
+
+  // Close drawer when a module is selected on mobile
+  document.getElementById('sidebar').addEventListener('click', e => {
+    if (e.target.closest('.nav-item') && window.innerWidth <= 700) {
+      closeDrawer();
+    }
+  });
 
   init();
 </script>
