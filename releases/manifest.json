@@ -15,12 +15,6 @@
       "dir": "releases/data-aggregation-platform"
     },
     {
-      "id": "data-aggregation-dashboards",
-      "name": "Data Aggregation — Dashboards",
-      "description": "Tailored dashboards for every team",
-      "dir": "releases/data-aggregation-dashboards"
-    },
-    {
       "id": "access-analytics",
       "name": "Access Analytics",
       "description": "Real-time channel intelligence for smarter market access",
