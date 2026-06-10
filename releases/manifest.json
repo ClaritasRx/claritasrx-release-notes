@@ -1,48 +1,48 @@
 
 {
-  "product": "Ascend\u00ae",
+  "product": "Ascend®",
   "modules": [
     {
       "id": "core-app",
       "name": "Core App",
       "description": "Platform-wide experience, navigation & administration",
-      "file": "releases/core-app.json"
+      "dir": "releases/core-app"
     },
     {
       "id": "data-aggregation-platform",
       "name": "Foundational Data Aggregation",
       "description": "The foundation for clarity in patient data",
-      "file": "releases/data-aggregation-platform.json"
+      "dir": "releases/data-aggregation-platform"
     },
     {
       "id": "data-aggregation-dashboards",
-      "name": "Data Aggregation \u2014 Dashboards",
+      "name": "Data Aggregation — Dashboards",
       "description": "Tailored dashboards for every team",
-      "file": "releases/data-aggregation-dashboards.json"
+      "dir": "releases/data-aggregation-dashboards"
     },
     {
       "id": "access-analytics",
       "name": "Access Analytics",
       "description": "Real-time channel intelligence for smarter market access",
-      "file": "releases/access-analytics.json"
+      "dir": "releases/access-analytics"
     },
     {
       "id": "patient-watchtower",
-      "name": "Patient Watchtower\u2122",
+      "name": "Patient Watchtower™",
       "description": "The first and only care coordination platform built specifically for specialty and rare disease patients",
-      "file": "releases/patient-watchtower.json"
+      "dir": "releases/patient-watchtower"
     },
     {
       "id": "patient-services-crm",
       "name": "Patient Services Omnichannel CRM",
       "description": "One patient journey: every channel in sync",
-      "file": "releases/patient-services-crm.json"
+      "dir": "releases/patient-services-crm"
     },
     {
       "id": "consent-clearinghouse",
-      "name": "Consent Clearinghouse\u2122",
+      "name": "Consent Clearinghouse™",
       "description": "Secure consent. Confident action.",
-      "file": "releases/consent-clearinghouse.json"
+      "dir": "releases/consent-clearinghouse"
     }
   ]
 }

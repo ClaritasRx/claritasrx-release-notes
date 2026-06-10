@@ -1,0 +1,32 @@
+{
+  "version": "2026.6",
+  "date": "June 11, 2026",
+  "summary": "New team territory mapping plus directory and export improvements.",
+  "updates": [
+    {
+      "type": "new",
+      "title": "Team Map & Territory Assignment",
+      "body": "When creating an FRM or Field Sales team, admins can now assign a geographic Map and Territory to scope the team."
+    },
+    {
+      "type": "enhancement",
+      "title": "HCO Contact Details on Profile",
+      "body": "HCO profiles now display phone, fax, and email directly on the page."
+    },
+    {
+      "type": "enhancement",
+      "title": "Smarter Directory Search",
+      "body": "Search in HCO, Contact, and address filters now returns matches across all records, not just the first page."
+    },
+    {
+      "type": "fix",
+      "title": "Task Export",
+      "body": "CRM Tasks export to CSV/Excel now includes the Description column."
+    },
+    {
+      "type": "fix",
+      "title": "HCP Directory Stability",
+      "body": "The HCP directory no longer errors when an affiliated account has been removed."
+    }
+  ]
+}

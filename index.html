@@ -487,7 +487,10 @@
   };
 
   let manifest = null;
-  let moduleCache = {};
+  // moduleIndexCache[id] = array of { version, date, file }
+  const moduleIndexCache = {};
+  // releaseCache[id][file] = full release data object
+  const releaseCache = {};
 
   async function fetchJson(url) {
     const res = await fetch(url + '?_=' + Date.now());
@@ -534,19 +537,17 @@
       `<div class="state-msg"><div class="spinner"></div>Loading ${mod.name}…</div>`;
 
     try {
-      if (!moduleCache[id]) {
-        moduleCache[id] = await fetchJson(BASE_URL + mod.file);
+      if (!moduleIndexCache[id]) {
+        moduleIndexCache[id] = await fetchJson(BASE_URL + mod.dir + '/index.json');
       }
-      renderModule(mod, moduleCache[id]);
+      renderModule(mod, moduleIndexCache[id]);
     } catch (e) {
       document.getElementById('main-content').innerHTML =
         `<div class="state-msg">⚠️ Could not load ${mod.name}.<br><small style="opacity:0.6">${e.message}</small></div>`;
     }
   }
 
-  function renderModule(mod, data) {
-    const releases = data.releases || [];
-
+  function renderModule(mod, releases) {
     if (!releases.length) {
       document.getElementById('main-content').innerHTML = `
         <div class="release-picker-row">
@@ -582,12 +583,32 @@
     `;
 
     const sel = document.getElementById('release-select');
-    sel.addEventListener('change', () => renderRelease(releases, parseInt(sel.value)));
-    renderRelease(releases, 0);
+    sel.addEventListener('change', () => loadAndRenderRelease(mod, releases, parseInt(sel.value)));
+    loadAndRenderRelease(mod, releases, 0);
   }
 
-  function renderRelease(releases, idx) {
-    const r = releases[idx];
+  async function loadAndRenderRelease(mod, releases, idx) {
+    const entry = releases[idx];
+    if (!entry) return;
+
+    if (!releaseCache[mod.id]) releaseCache[mod.id] = {};
+    if (!releaseCache[mod.id][entry.file]) {
+      document.getElementById('release-body').innerHTML =
+        `<div class="state-msg"><div class="spinner"></div></div>`;
+      try {
+        releaseCache[mod.id][entry.file] =
+          await fetchJson(BASE_URL + mod.dir + '/' + entry.file);
+      } catch (e) {
+        document.getElementById('release-body').innerHTML =
+          `<div class="state-msg">⚠️ Could not load release.<br><small style="opacity:0.6">${e.message}</small></div>`;
+        return;
+      }
+    }
+
+    renderRelease(releaseCache[mod.id][entry.file]);
+  }
+
+  function renderRelease(r) {
     if (!r) return;
 
     const newItems = r.updates.filter(u => u.type === 'new');
