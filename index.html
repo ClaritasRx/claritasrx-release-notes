@@ -7,16 +7,21 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet"/>
   <style>
     :root {
-      --navy:       #1B1F3B;
-      --orange:     #E8622A;
-      --cream:      #F7F5F0;
+      --navy:       #272369;   /* ClaritasRx Primary Blue       */
+      --indigo:     #464A9F;   /* ClaritasRx Indigo — headings  */
+      --orange:     #F26530;   /* ClaritasRx Orange-Red         */
+      --red:        #EF384C;   /* ClaritasRx Red                */
+      --purple:     #9386BF;   /* Soft Purple                   */
+      --cream:      #F7F6F9;   /* Ice Lavender                  */
+      --peach:      #FBF3EE;   /* Peach Cream                   */
       --white:      #FFFFFF;
-      --text:       #1B1F3B;
-      --muted:      #6B7280;
-      --border:     #E5E2DA;
+      --text:       #272369;
+      --muted:      #767676;   /* Muted Gray                    */
+      --dark-text:  #565656;   /* Dark Gray                     */
+      --border:     #E8E8E8;
       --sidebar-w:  220px;
-      --new-bg:     #FFF3EE;
-      --fix-bg:     #F0F4FF;
+      --new-bg:     #FBF3EE;
+      --fix-bg:     #EEEDF8;
       --enh-bg:     #F0FAF4;
     }
 
@@ -40,24 +45,7 @@
       overflow: hidden;
       flex-shrink: 0;
     }
-    header::before {
-      content: '';
-      position: absolute;
-      right: -80px; top: -80px;
-      width: 380px; height: 380px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(241,101,49,0.3) 0%, transparent 68%);
-      pointer-events: none;
-    }
-    header::after {
-      content: '';
-      position: absolute;
-      left: -50px; bottom: -50px;
-      width: 240px; height: 240px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(75,92,184,0.15) 0%, transparent 70%);
-      pointer-events: none;
-    }
+
     .brand {
       font-family: 'DM Serif Display', serif;
       font-size: 2.2rem;
@@ -487,10 +475,8 @@
   };
 
   let manifest = null;
-  // moduleIndexCache[id] = array of { version, date, file }
-  const moduleIndexCache = {};
-  // releaseCache[id][file] = full release data object
-  const releaseCache = {};
+  // Cache: moduleId -> array of loaded release data objects
+  let releaseCache = {};
 
   async function fetchJson(url) {
     const res = await fetch(url + '?_=' + Date.now());
@@ -533,22 +519,10 @@
     const mod = manifest.modules.find(m => m.id === id);
     if (!mod) return;
 
-    document.getElementById('main-content').innerHTML =
-      `<div class="state-msg"><div class="spinner"></div>Loading ${mod.name}…</div>`;
+    // releases is now an array of { version, date, file } on the manifest entry
+    const releaseList = mod.releases || [];
 
-    try {
-      if (!moduleIndexCache[id]) {
-        moduleIndexCache[id] = await fetchJson(BASE_URL + mod.dir + '/index.json');
-      }
-      renderModule(mod, moduleIndexCache[id]);
-    } catch (e) {
-      document.getElementById('main-content').innerHTML =
-        `<div class="state-msg">⚠️ Could not load ${mod.name}.<br><small style="opacity:0.6">${e.message}</small></div>`;
-    }
-  }
-
-  function renderModule(mod, releases) {
-    if (!releases.length) {
+    if (!releaseList.length) {
       document.getElementById('main-content').innerHTML = `
         <div class="release-picker-row">
           <div class="module-title-area">
@@ -564,7 +538,30 @@
       return;
     }
 
-    const selectOptions = releases.map((r, i) =>
+    document.getElementById('main-content').innerHTML =
+      `<div class="state-msg"><div class="spinner"></div>Loading ${mod.name}…</div>`;
+
+    try {
+      // Load the first (latest) release file
+      const latest = await loadRelease(id, 0, releaseList);
+      renderModule(mod, releaseList, latest);
+    } catch (e) {
+      document.getElementById('main-content').innerHTML =
+        `<div class="state-msg">⚠️ Could not load ${mod.name}.<br><small style="opacity:0.6">${e.message}</small></div>`;
+    }
+  }
+
+  async function loadRelease(moduleId, idx, releaseList) {
+    const key = moduleId + ':' + idx;
+    if (!releaseCache[key]) {
+      const entry = releaseList[idx];
+      releaseCache[key] = await fetchJson(BASE_URL + entry.file);
+    }
+    return releaseCache[key];
+  }
+
+  function renderModule(mod, releaseList, initialData) {
+    const selectOptions = releaseList.map((r, i) =>
       `<option value="${i}">${r.date}</option>`
     ).join('');
 
@@ -583,29 +580,22 @@
     `;
 
     const sel = document.getElementById('release-select');
-    sel.addEventListener('change', () => loadAndRenderRelease(mod, releases, parseInt(sel.value)));
-    loadAndRenderRelease(mod, releases, 0);
-  }
 
-  async function loadAndRenderRelease(mod, releases, idx) {
-    const entry = releases[idx];
-    if (!entry) return;
-
-    if (!releaseCache[mod.id]) releaseCache[mod.id] = {};
-    if (!releaseCache[mod.id][entry.file]) {
+    async function onSelectChange() {
+      const idx = parseInt(sel.value);
       document.getElementById('release-body').innerHTML =
         `<div class="state-msg"><div class="spinner"></div></div>`;
       try {
-        releaseCache[mod.id][entry.file] =
-          await fetchJson(BASE_URL + mod.dir + '/' + entry.file);
-      } catch (e) {
+        const data = await loadRelease(mod.id, idx, releaseList);
+        renderRelease(data);
+      } catch(e) {
         document.getElementById('release-body').innerHTML =
-          `<div class="state-msg">⚠️ Could not load release.<br><small style="opacity:0.6">${e.message}</small></div>`;
-        return;
+          `<div class="state-msg">⚠️ Could not load this release.</div>`;
       }
     }
 
-    renderRelease(releaseCache[mod.id][entry.file]);
+    sel.addEventListener('change', onSelectChange);
+    renderRelease(initialData);
   }
 
   function renderRelease(r) {
