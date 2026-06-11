@@ -11,7 +11,7 @@
     {
       "type": "enhancement",
       "title": "Status History Timestamps",
-      "body": "Status history now shows the time of day for each status, and a patient's latest status is determined by the actual status date."
+      "body": "Status history now shows the time of day for each status, and a patient's latest status reflects the actual status date."
     },
     {
       "type": "enhancement",
@@ -19,9 +19,9 @@
       "body": "Status History and Shipments & Infusions now default to most-recent-first."
     },
     {
-      "type": "fix",
+      "type": "enhancement",
       "title": "Saved Views Retained",
-      "body": "Saved-view filters and column order now persist when navigating back or editing records across patient and CRM list views."
+      "body": "Saved-view filters and column order now persist when navigating back or editing records."
     },
     {
       "type": "fix",

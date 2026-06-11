@@ -6,7 +6,7 @@
     {
       "type": "new",
       "title": "Team Map & Territory Assignment",
-      "body": "When creating an FRM or Field Sales team, admins can now assign a geographic Map and Territory to scope the team."
+      "body": "When creating an FRM or Field Sales team, admins can now assign a geographic map and territory to scope the team's coverage area."
     },
     {
       "type": "enhancement",
@@ -16,12 +16,12 @@
     {
       "type": "enhancement",
       "title": "Smarter Directory Search",
-      "body": "Search in HCO, Contact, and address filters now returns matches across all records, not just the first page."
+      "body": "Search in HCO, Contact, and address filters now returns matches across all records, not just the first page of results."
     },
     {
       "type": "fix",
       "title": "Task Export",
-      "body": "CRM Tasks export to CSV/Excel now includes the Description column."
+      "body": "CRM Tasks exported to CSV or Excel now include the Description column."
     },
     {
       "type": "fix",
