@@ -519,8 +519,17 @@
     const mod = manifest.modules.find(m => m.id === id);
     if (!mod) return;
 
-    // releases is now an array of { version, date, file } on the manifest entry
-    const releaseList = mod.releases || [];
+    document.getElementById('main-content').innerHTML =
+      `<div class="state-msg"><div class="spinner"></div>Loading ${mod.name}…</div>`;
+
+    let releaseList;
+    try {
+      releaseList = await fetchJson(BASE_URL + mod.dir + '/index.json');
+    } catch (e) {
+      document.getElementById('main-content').innerHTML =
+        `<div class="state-msg">⚠️ Could not load ${mod.name}.<br><small style="opacity:0.6">${e.message}</small></div>`;
+      return;
+    }
 
     if (!releaseList.length) {
       document.getElementById('main-content').innerHTML = `
@@ -538,12 +547,8 @@
       return;
     }
 
-    document.getElementById('main-content').innerHTML =
-      `<div class="state-msg"><div class="spinner"></div>Loading ${mod.name}…</div>`;
-
     try {
-      // Load the first (latest) release file
-      const latest = await loadRelease(id, 0, releaseList);
+      const latest = await loadRelease(id, 0, releaseList, mod.dir);
       renderModule(mod, releaseList, latest);
     } catch (e) {
       document.getElementById('main-content').innerHTML =
@@ -551,11 +556,11 @@
     }
   }
 
-  async function loadRelease(moduleId, idx, releaseList) {
+  async function loadRelease(moduleId, idx, releaseList, moduleDir) {
     const key = moduleId + ':' + idx;
     if (!releaseCache[key]) {
       const entry = releaseList[idx];
-      releaseCache[key] = await fetchJson(BASE_URL + entry.file);
+      releaseCache[key] = await fetchJson(BASE_URL + moduleDir + '/' + entry.file);
     }
     return releaseCache[key];
   }
@@ -586,7 +591,7 @@
       document.getElementById('release-body').innerHTML =
         `<div class="state-msg"><div class="spinner"></div></div>`;
       try {
-        const data = await loadRelease(mod.id, idx, releaseList);
+        const data = await loadRelease(mod.id, idx, releaseList, mod.dir);
         renderRelease(data);
       } catch(e) {
         document.getElementById('release-body').innerHTML =
