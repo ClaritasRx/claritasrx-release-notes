@@ -1,4 +1,3 @@
-
 {
   "product": "Ascend®",
   "modules": [
@@ -6,37 +5,51 @@
       "id": "core-app",
       "name": "Core App",
       "description": "Platform-wide experience, navigation & administration",
-      "dir": "releases/core-app"
+      "releases": [
+        { "version": "2026.6", "date": "June 11, 2026", "file": "releases/core-app/2026.6.json" }
+      ]
     },
     {
-      "id": "data-aggregation-platform",
-      "name": "Foundational Data Aggregation",
-      "description": "The foundation for clarity in patient data",
-      "dir": "releases/data-aggregation-platform"
+      "type": "group",
+      "label": "Foundational Data Aggregation",
+      "children": [
+        {
+          "id": "data-aggregation-dashboards",
+          "name": "Data Aggregation — Dashboards",
+          "description": "Tailored dashboards for every team",
+          "releases": []
+        },
+        {
+          "id": "consent-clearinghouse",
+          "name": "Consent Clearinghouse™",
+          "description": "Secure consent. Confident action.",
+          "releases": [
+            { "version": "2026.6", "date": "June 11, 2026", "file": "releases/consent-clearinghouse/2026.6.json" }
+          ]
+        }
+      ]
     },
     {
       "id": "access-analytics",
       "name": "Access Analytics",
       "description": "Real-time channel intelligence for smarter market access",
-      "dir": "releases/access-analytics"
+      "releases": []
     },
     {
       "id": "patient-watchtower",
       "name": "Patient Watchtower™",
       "description": "The first and only care coordination platform built specifically for specialty and rare disease patients",
-      "dir": "releases/patient-watchtower"
+      "releases": [
+        { "version": "2026.6", "date": "June 11, 2026", "file": "releases/patient-watchtower/2026.6.json" }
+      ]
     },
     {
       "id": "patient-services-crm",
       "name": "Patient Services Omnichannel CRM",
       "description": "One patient journey: every channel in sync",
-      "dir": "releases/patient-services-crm"
-    },
-    {
-      "id": "consent-clearinghouse",
-      "name": "Consent Clearinghouse™",
-      "description": "Secure consent. Confident action.",
-      "dir": "releases/consent-clearinghouse"
+      "releases": [
+        { "version": "2026.6", "date": "June 11, 2026", "file": "releases/patient-services-crm/2026.6.json" }
+      ]
     }
   ]
 }

@@ -151,6 +151,56 @@
     }
     .nav-item.active .nav-icon svg { stroke: var(--white); }
 
+    .nav-group-label {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--indigo);
+      padding: 18px 20px 6px;
+      opacity: 0.7;
+    }
+    .nav-child {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      width: 100%;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.84rem;
+      font-weight: 500;
+      color: var(--muted);
+      padding: 8px 20px 8px 32px;
+      text-align: left;
+      position: relative;
+      transition: color 0.15s, background 0.15s;
+    }
+    .nav-child::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 3px;
+      background: var(--orange);
+      border-radius: 0 2px 2px 0;
+      opacity: 0;
+      transition: opacity 0.15s;
+    }
+    .nav-child .nav-arrow {
+      font-size: 0.6rem;
+      opacity: 0.5;
+      flex-shrink: 0;
+    }
+    .nav-child:hover { background: var(--cream); color: var(--text); }
+    .nav-child.active {
+      color: var(--white);
+      font-weight: 600;
+      background: var(--navy);
+    }
+    .nav-child.active::before { opacity: 1; }
+    .nav-child.active .nav-arrow { opacity: 0.7; }
+
     /* ── MAIN CONTENT ── */
     main {
       flex: 1;
@@ -489,7 +539,11 @@
       manifest = await fetchJson(BASE_URL + 'releases/manifest.json');
       if (manifest.product) document.getElementById('product-name').innerHTML = manifest.product;
       buildSidebar();
-      selectModule(manifest.modules[0].id);
+      // Select first non-group module
+      const first = manifest.modules[0].type === 'group'
+        ? manifest.modules[0].children[0]
+        : manifest.modules[0];
+      selectModule(first.id);
     } catch (e) {
       document.getElementById('main-content').innerHTML =
         `<div class="state-msg">⚠️ Could not load release data.<br><small style="opacity:0.6">${e.message}</small></div>`;
@@ -500,36 +554,56 @@
   function buildSidebar() {
     const aside = document.getElementById('sidebar');
     aside.innerHTML = '<div class="sidebar-label">Modules</div>';
-    manifest.modules.forEach(mod => {
-      const icon = ICONS[mod.id] || ICONS['core-app'];
-      const btn = document.createElement('button');
-      btn.className = 'nav-item';
-      btn.dataset.id = mod.id;
-      btn.innerHTML = `<span class="nav-icon">${icon}</span>${mod.name}`;
-      btn.addEventListener('click', () => selectModule(mod.id));
-      aside.appendChild(btn);
+
+    manifest.modules.forEach(entry => {
+      if (entry.type === 'group') {
+        // Non-clickable group header
+        const label = document.createElement('div');
+        label.className = 'nav-group-label';
+        label.textContent = entry.label;
+        aside.appendChild(label);
+
+        // Nested children
+        entry.children.forEach(mod => {
+          const btn = document.createElement('button');
+          btn.className = 'nav-child';
+          btn.dataset.id = mod.id;
+          btn.innerHTML = `<span class="nav-arrow">▸</span>${mod.name}`;
+          btn.addEventListener('click', () => selectModule(mod.id));
+          aside.appendChild(btn);
+        });
+      } else {
+        // Regular top-level module
+        const icon = ICONS[entry.id] || ICONS['core-app'];
+        const btn = document.createElement('button');
+        btn.className = 'nav-item';
+        btn.dataset.id = entry.id;
+        btn.innerHTML = `<span class="nav-icon">${icon}</span>${entry.name}`;
+        btn.addEventListener('click', () => selectModule(entry.id));
+        aside.appendChild(btn);
+      }
     });
   }
 
   async function selectModule(id) {
-    document.querySelectorAll('.nav-item').forEach(b =>
+    document.querySelectorAll('.nav-item, .nav-child').forEach(b =>
       b.classList.toggle('active', b.dataset.id === id)
     );
 
-    const mod = manifest.modules.find(m => m.id === id);
+    // Find module across top-level and group children
+    let mod = null;
+    for (const entry of manifest.modules) {
+      if (entry.type === 'group') {
+        mod = entry.children.find(m => m.id === id);
+      } else if (entry.id === id) {
+        mod = entry;
+      }
+      if (mod) break;
+    }
     if (!mod) return;
 
-    document.getElementById('main-content').innerHTML =
-      `<div class="state-msg"><div class="spinner"></div>Loading ${mod.name}…</div>`;
-
-    let releaseList;
-    try {
-      releaseList = await fetchJson(BASE_URL + mod.dir + '/index.json');
-    } catch (e) {
-      document.getElementById('main-content').innerHTML =
-        `<div class="state-msg">⚠️ Could not load ${mod.name}.<br><small style="opacity:0.6">${e.message}</small></div>`;
-      return;
-    }
+    // releases is now an array of { version, date, file } on the manifest entry
+    const releaseList = mod.releases || [];
 
     if (!releaseList.length) {
       document.getElementById('main-content').innerHTML = `
@@ -547,8 +621,12 @@
       return;
     }
 
+    document.getElementById('main-content').innerHTML =
+      `<div class="state-msg"><div class="spinner"></div>Loading ${mod.name}…</div>`;
+
     try {
-      const latest = await loadRelease(id, 0, releaseList, mod.dir);
+      // Load the first (latest) release file
+      const latest = await loadRelease(id, 0, releaseList);
       renderModule(mod, releaseList, latest);
     } catch (e) {
       document.getElementById('main-content').innerHTML =
@@ -556,11 +634,23 @@
     }
   }
 
-  async function loadRelease(moduleId, idx, releaseList, moduleDir) {
+  function findModuleById(id) {
+    for (const entry of manifest.modules) {
+      if (entry.type === 'group') {
+        const child = entry.children.find(m => m.id === id);
+        if (child) return child;
+      } else if (entry.id === id) {
+        return entry;
+      }
+    }
+    return null;
+  }
+
+  async function loadRelease(moduleId, idx, releaseList) {
     const key = moduleId + ':' + idx;
     if (!releaseCache[key]) {
       const entry = releaseList[idx];
-      releaseCache[key] = await fetchJson(BASE_URL + moduleDir + '/' + entry.file);
+      releaseCache[key] = await fetchJson(BASE_URL + entry.file);
     }
     return releaseCache[key];
   }
@@ -591,7 +681,7 @@
       document.getElementById('release-body').innerHTML =
         `<div class="state-msg"><div class="spinner"></div></div>`;
       try {
-        const data = await loadRelease(mod.id, idx, releaseList, mod.dir);
+        const data = await loadRelease(mod.id, idx, releaseList);
         renderRelease(data);
       } catch(e) {
         document.getElementById('release-body').innerHTML =
