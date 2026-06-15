@@ -151,15 +151,42 @@
     }
     .nav-item.active .nav-icon svg { stroke: var(--white); }
 
-    .nav-group-label {
-      font-size: 0.65rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--indigo);
-      padding: 18px 20px 6px;
-      opacity: 0.7;
+    /* ── ACCORDION GROUP ── */
+    .nav-group-toggle {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      width: 100%;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: var(--muted);
+      padding: 10px 20px;
+      text-align: left;
+      position: relative;
+      transition: color 0.15s, background 0.15s;
     }
+    .nav-group-toggle:hover { background: var(--cream); color: var(--text); }
+    .nav-group-toggle.open { color: var(--text); }
+    .nav-group-chevron {
+      margin-left: auto;
+      font-size: 0.7rem;
+      color: var(--muted);
+      transition: transform 0.2s ease;
+      flex-shrink: 0;
+    }
+    .nav-group-toggle.open .nav-group-chevron { transform: rotate(90deg); }
+
+    .nav-children {
+      overflow: hidden;
+      max-height: 0;
+      transition: max-height 0.25s ease;
+    }
+    .nav-children.open { max-height: 200px; }
+
     .nav-child {
       display: flex;
       align-items: center;
@@ -172,7 +199,7 @@
       font-size: 0.84rem;
       font-weight: 500;
       color: var(--muted);
-      padding: 8px 20px 8px 32px;
+      padding: 8px 20px 8px 36px;
       text-align: left;
       position: relative;
       transition: color 0.15s, background 0.15s;
@@ -187,11 +214,6 @@
       opacity: 0;
       transition: opacity 0.15s;
     }
-    .nav-child .nav-arrow {
-      font-size: 0.6rem;
-      opacity: 0.5;
-      flex-shrink: 0;
-    }
     .nav-child:hover { background: var(--cream); color: var(--text); }
     .nav-child.active {
       color: var(--white);
@@ -199,7 +221,6 @@
       background: var(--navy);
     }
     .nav-child.active::before { opacity: 1; }
-    .nav-child.active .nav-arrow { opacity: 0.7; }
 
     /* ── MAIN CONTENT ── */
     main {
@@ -521,7 +542,8 @@
     'access-analytics':      `<svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>`,
     'patient-watchtower':    `<svg viewBox="0 0 24 24"><path d="M1 12S5 4 12 4s11 8 11 8-4 8-11 8S1 12 1 12z"/><circle cx="12" cy="12" r="3"/></svg>`,
     'patient-services-crm':  `<svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>`,
-    'consent-clearinghouse': `<svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>`,
+    'consent-clearinghouse':            `<svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>`,
+    'foundational-data-aggregation':    `<svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v6c0 1.66 4 3 9 3s9-1.34 9-3V5"/><path d="M3 11v6c0 1.66 4 3 9 3s9-1.34 9-3v-6"/></svg>`,
   };
 
   let manifest = null;
@@ -557,23 +579,39 @@
 
     manifest.modules.forEach(entry => {
       if (entry.type === 'group') {
-        // Non-clickable group header
-        const label = document.createElement('div');
-        label.className = 'nav-group-label';
-        label.textContent = entry.label;
-        aside.appendChild(label);
+        const groupIcon = ICONS['foundational-data-aggregation'] || ICONS['data-aggregation'];
 
-        // Nested children
+        // Clickable accordion toggle — same style as nav-item
+        const toggle = document.createElement('button');
+        toggle.className = 'nav-group-toggle';
+        toggle.dataset.group = entry.label;
+        toggle.innerHTML = `
+          <span class="nav-icon">${groupIcon}</span>
+          ${entry.label}
+          <span class="nav-group-chevron">▶</span>`;
+        aside.appendChild(toggle);
+
+        // Collapsible children container
+        const childContainer = document.createElement('div');
+        childContainer.className = 'nav-children';
         entry.children.forEach(mod => {
           const btn = document.createElement('button');
           btn.className = 'nav-child';
           btn.dataset.id = mod.id;
-          btn.innerHTML = `<span class="nav-arrow">▸</span>${mod.name}`;
+          btn.textContent = mod.name;
           btn.addEventListener('click', () => selectModule(mod.id));
-          aside.appendChild(btn);
+          childContainer.appendChild(btn);
         });
+        aside.appendChild(childContainer);
+
+        // Toggle accordion on click
+        toggle.addEventListener('click', () => {
+          const isOpen = toggle.classList.contains('open');
+          toggle.classList.toggle('open', !isOpen);
+          childContainer.classList.toggle('open', !isOpen);
+        });
+
       } else {
-        // Regular top-level module
         const icon = ICONS[entry.id] || ICONS['core-app'];
         const btn = document.createElement('button');
         btn.className = 'nav-item';
@@ -589,6 +627,17 @@
     document.querySelectorAll('.nav-item, .nav-child').forEach(b =>
       b.classList.toggle('active', b.dataset.id === id)
     );
+    // If selected module is a group child, open its accordion
+    document.querySelectorAll('.nav-child').forEach(btn => {
+      if (btn.dataset.id === id) {
+        const container = btn.closest(".nav-children");
+        const toggle = container && container.previousElementSibling;
+        if (container && toggle) {
+          container.classList.add('open');
+          toggle.classList.add('open');
+        }
+      }
+    });
 
     // Find module across top-level and group children
     let mod = null;
