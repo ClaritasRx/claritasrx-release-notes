@@ -6,7 +6,7 @@
       "name": "Core App",
       "description": "Platform-wide experience, navigation & administration",
       "releases": [
-        { "version": "2026.6", "date": "June 11, 2026", "file": "releases/core-app/2026.6.json" }
+        { "version": "2026.6", "date": "June 2026", "file": "releases/core-app/2026.6.json" }
       ]
     },
     {
@@ -24,7 +24,7 @@
           "name": "Consent Clearinghouse™",
           "description": "Secure consent. Confident action.",
           "releases": [
-            { "version": "2026.6", "date": "June 11, 2026", "file": "releases/consent-clearinghouse/2026.6.json" }
+            { "version": "2026.6", "date": "June 2026", "file": "releases/consent-clearinghouse/2026.6.json" }
           ]
         }
       ]
@@ -40,7 +40,7 @@
       "name": "Patient Watchtower™",
       "description": "The first and only care coordination platform built specifically for specialty and rare disease patients",
       "releases": [
-        { "version": "2026.6", "date": "June 11, 2026", "file": "releases/patient-watchtower/2026.6.json" }
+        { "version": "2026.6", "date": "June 2026", "file": "releases/patient-watchtower/2026.6.json" }
       ]
     },
     {
@@ -48,7 +48,7 @@
       "name": "Patient Services Omnichannel CRM",
       "description": "One patient journey: every channel in sync",
       "releases": [
-        { "version": "2026.6", "date": "June 11, 2026", "file": "releases/patient-services-crm/2026.6.json" }
+        { "version": "2026.6", "date": "June 2026", "file": "releases/patient-services-crm/2026.6.json" }
       ]
     }
   ]
