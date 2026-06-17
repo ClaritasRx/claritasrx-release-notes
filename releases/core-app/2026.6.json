@@ -1,6 +1,4 @@
-{
-  "module": "Core App",
-  "releases": [
+
     {
       "version": "June 2026",
       "date": "June 17, 2026",
@@ -10,5 +8,4 @@
         { "type": "fix", "title": "User Management Export", "body": "XLS download now works correctly without requiring a saved view to be set first." }
       ]
     }
-  ]
-}
+

@@ -17,8 +17,18 @@ const MANIFEST  = path.join(ROOT, 'releases', 'manifest.json');
 
 const manifest = JSON.parse(fs.readFileSync(MANIFEST, 'utf8'));
 
-for (const mod of manifest.modules) {
-  const dir = path.join(ROOT, mod.dir);
+// Flatten top-level modules and group children into a single list
+const allModules = [];
+for (const entry of manifest.modules) {
+  if (entry.type === 'group' && Array.isArray(entry.children)) {
+    allModules.push(...entry.children);
+  } else if (entry.id) {
+    allModules.push(entry);
+  }
+}
+
+for (const mod of allModules) {
+  const dir = path.join(ROOT, 'releases', mod.id);
 
   if (!fs.existsSync(dir)) {
     fs.mkdirSync(dir, { recursive: true });

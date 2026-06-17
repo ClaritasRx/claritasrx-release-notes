@@ -1,6 +1,4 @@
-{
-  "module": "Patient Services Omnichannel CRM",
-  "releases": [
+
     {
       "version": "June 2026",
       "date": "June 17, 2026",
@@ -17,5 +15,3 @@
         { "type": "fix", "title": "Inquiry Notifications", "body": "Users without Patient Tracking access no longer encounter an error when clicking an inquiry notification. The notification label has also been updated to \"When an inquiry assigned to me is closed\" for clarity." }
       ]
     }
-  ]
-}
