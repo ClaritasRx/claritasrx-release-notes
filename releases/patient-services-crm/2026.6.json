@@ -1,32 +1,21 @@
 {
-  "version": "2026.6",
-  "date": "June 11, 2026",
-  "summary": "New team territory mapping plus directory and export improvements.",
-  "updates": [
+  "module": "Patient Services Omnichannel CRM",
+  "releases": [
     {
-      "type": "new",
-      "title": "Team Map & Territory Assignment",
-      "body": "When creating an FRM or Field Sales team, admins can now assign a geographic map and territory to scope the team's coverage area."
-    },
-    {
-      "type": "enhancement",
-      "title": "HCO Contact Details on Profile",
-      "body": "HCO profiles now display phone, fax, and email directly on the page."
-    },
-    {
-      "type": "enhancement",
-      "title": "Smarter Directory Search",
-      "body": "Search in HCO, Contact, and address filters now returns matches across all records, not just the first page of results."
-    },
-    {
-      "type": "fix",
-      "title": "Task Export",
-      "body": "CRM Tasks exported to CSV or Excel now include the Description column."
-    },
-    {
-      "type": "fix",
-      "title": "HCP Directory Stability",
-      "body": "The HCP directory no longer errors when an affiliated account has been removed."
+      "version": "June 2026",
+      "date": "June 17, 2026",
+      "summary": "Expanded HCP and HCO profile visibility, richer patient profile details, and several usability fixes across documents, roles, tasks, and notifications.",
+      "updates": [
+        { "type": "new", "title": "HCP Territory Mapping", "body": "Territory details — including map, territory, zone, and region — are now visible directly on the HCP profile, scoped to each user's access level. FRM and Field Sales teams can also be assigned a geographic map and territory at creation, automatically scoping their members' data visibility." },
+        { "type": "new", "title": "HCO Contact Details", "body": "Phone, fax, and email now appear directly on the HCO profile page, so users no longer need to navigate to an affiliated HCP to find contact information." },
+        { "type": "enhancement", "title": "Patient Profile — Support Program Summary", "body": "Active support program names now display in the patient profile header. Patients enrolled in multiple programs show a full program list on hover." },
+        { "type": "enhancement", "title": "Patient Profile — Status History Timestamps", "body": "Status history entries now include timestamps alongside dates, making it easier to distinguish between updates recorded on the same day." },
+        { "type": "fix", "title": "Patient Documents", "body": "Download and Delete options are now correctly visible for SP/Hub users with the appropriate permissions." },
+        { "type": "fix", "title": "Support Programs & Coverages", "body": "Add Support Program and Add New Plan buttons now display correctly for PAL and PS Manager roles." },
+        { "type": "fix", "title": "Tasks Export", "body": "The Description column is now included when exporting CRM Tasks to CSV or XLSX." },
+        { "type": "fix", "title": "Save Views", "body": "Column ordering in Patient Tracking now persists correctly when saving a view. Saved filters are also retained after editing an Interaction, Infusion Site, or other record and navigating back." },
+        { "type": "fix", "title": "Inquiry Notifications", "body": "Users without Patient Tracking access no longer encounter an error when clicking an inquiry notification. The notification label has also been updated to \"When an inquiry assigned to me is closed\" for clarity." }
+      ]
     }
   ]
 }

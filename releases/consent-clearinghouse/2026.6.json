@@ -1,12 +1,13 @@
 {
-  "version": "2026.6",
-  "date": "June 11, 2026",
-  "summary": "New triage filter on the Consent Alignment Report.",
-  "updates": [
+  "module": "Consent Clearinghouse",
+  "releases": [
     {
-      "type": "enhancement",
-      "title": "Consent Updated Date Filter",
-      "body": "The Consent Alignment Report now lets you filter by the date a patient's consent last changed, making it easier to triage by recency."
+      "version": "June 2026",
+      "date": "June 17, 2026",
+      "summary": "New date filter in the Alignment Report makes it easier to surface recent consent activity.",
+      "updates": [
+        { "type": "enhancement", "title": "Alignment Report — Consent Updated Filter", "body": "The CCH Alignment Report now supports filtering by Consent Updated date, making it easier to surface and review recent consent changes." }
+      ]
     }
   ]
 }

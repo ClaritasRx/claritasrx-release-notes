@@ -1,12 +1,14 @@
 {
-  "version": "2026.6",
-  "date": "June 11, 2026",
-  "summary": "Reliability fix for exporting user lists.",
-  "updates": [
+  "module": "Core App",
+  "releases": [
     {
-      "type": "fix",
-      "title": "User List Export",
-      "body": "Exporting the User Management list to Excel now works even when no saved view is selected."
+      "version": "June 2026",
+      "date": "June 17, 2026",
+      "summary": "Admin tools for controlled maintenance windows and a fix for User Management exports.",
+      "updates": [
+        { "type": "new", "title": "Maintenance Mode", "body": "Admins can now disable login and force-logout active sessions to enable clean backups before deployments, configurable via the API gateway." },
+        { "type": "fix", "title": "User Management Export", "body": "XLS download now works correctly without requiring a saved view to be set first." }
+      ]
     }
   ]
 }
