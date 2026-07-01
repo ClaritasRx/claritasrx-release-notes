@@ -17,7 +17,9 @@
           "id": "data-aggregation-dashboards",
           "name": "Data Aggregation — Dashboards",
           "description": "Tailored dashboards for every team",
-          "releases": []
+          "releases": [
+            { "version": "2026.6", "date": "June 2026", "file": "releases/data-aggregation-dashboards/2026.6.json" }
+          ]
         },
         {
           "id": "consent-clearinghouse",
