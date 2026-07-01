@@ -1,7 +1,7 @@
 {
   "version": "2026.6",
-  "date": "June 11, 2026",
-  "summary": "Patient-profile clarity improvements and saved-view reliability fixes.",
+  "date": "June 30, 2026",
+  "summary": "Patient profile clarity and PHI compliance improvements, alongside fixes for saved-view reliability, notification routing, and support program display.",
   "updates": [
     {
       "type": "new",
@@ -23,6 +23,11 @@
       "title": "Saved Views Retained",
       "body": "Saved-view filters and column order now persist when navigating back or editing records."
     },
+   {
+      "type": "enhancement",
+      "title": "PHI Protection",
+      "body": "The FRM role can no longer create or edit Task descriptions containing protected health information."
+    },
     {
       "type": "fix",
       "title": "Inquiry Notifications",
@@ -32,6 +37,16 @@
       "type": "fix",
       "title": "Patient Update Stability",
       "body": "Resolved an error when updating a patient record that has no date of birth."
-    }
+    },
+    {
+      "type": "fix",
+      "title": "Support Programs",
+      "body": "Fixed an issue where support programs with past expiration dates were not appearing in the table after creation."
+   },
+    {
+      "type": "fix",
+      "title": "Inquiry List Masking",
+      "body": "SP Patient ID masking is now correctly applied for non-consented patients in the Watchtower Patient Inquiries list."
+        }
   ]
 }

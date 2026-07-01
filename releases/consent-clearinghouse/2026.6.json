@@ -1,8 +1,15 @@
 {
   "version": "June 2026",
-  "date": "June 17, 2026",
-  "summary": "New date filter in the Alignment Report makes it easier to surface recent consent activity.",
+  "date": "June 30, 2026",
+  "summary": "Alignment digest notifications and new filtering capabilities on the CCH Alignment Report.",
   "updates": [
-    { "type": "enhancement", "title": "Alignment Report — Consent Updated Filter", "body": "The CCH Alignment Report now supports filtering by Consent Updated date, making it easier to surface and review recent consent changes." }
+    {"type": "new", "title": "Alignment Digest — Email Notifications", "body": "Manufacturer, Hub, and SP users can now receive scheduled email digests (daily or weekly) summarizing new consent gaps and misalignments by data source, with deep links to filtered Alignment Report views."},
+    {"type": "new", "title": "In-App Notifications", "body": "A new in-app notification alerts users to new consent gaps as they occur, with a direct link to the Alignment Report."},
+    {"type": "enhancement", "title": "Consent Status Filter", "body": "Users can now filter the Alignment Report by consent status (Valid Consent / No Consent) within the SP filter."},
+    {"type": "enhancement", "title": "Alignment Report — Consent Updated Filter", "body": "The CCH Alignment Report now supports filtering by Consent Updated date, making it easier to surface and review recent consent changes." },
+    {"type": "fix", "title": "Brand Filter", "body": "Fixed an issue where the brand filter on the Consent Dashboard was not applying correctly when a brand was deselected." },
+    {"type": "fix", "title": "Access Control", "body": "Fixed an issue where FRM and Field Team Sales users were able to view patient consent information and patient IDs on the CCH Dashboard." }
   ]
+
+
 }

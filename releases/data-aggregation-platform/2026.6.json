@@ -1,0 +1,64 @@
+
+    {
+      "version": "2026.6",
+      "date": "June 2026",
+      "summary": "June introduces a new Export Configuration management page with batch scheduling, automated data-quality issue log delivery, a customer filter for Issue Management, and fixes across Data Ingest, Data Reference, and Issue Management.",
+      "updates": [
+        {
+          "type": "new",
+          "title": "Export Configuration Management",
+          "body": "Create, schedule, and manage file export/extract configurations from a new page, with support for batch scheduling (daily, weekly, monthly, or quarterly recurrence) and configuration history."
+        },
+        {
+          "type": "new",
+          "title": "Automated Issue Log Delivery",
+          "body": "Data Partners can now receive automated data-quality issue logs via SFTP. Configure the issue report based on feed type (Cumulative or Incremental), frequency, and file type directly from the new Data Report screen. The system generates a CSV of validation errors and delivers it on schedule."
+        },
+        {
+          "type": "new",
+          "title": "Data Source Color Coding",
+          "body": "Data sources can now be assigned a color for easier visual identification."
+        },
+        {
+          "type": "enhancement",
+          "title": "Export Configuration Enhancements",
+          "body": "Export configurations now support an Incremental feed, along with the ability to remove and reorder columns from the template."
+        },
+        {
+          "type": "enhancement",
+          "title": "Issue Management Customer Filter",
+          "body": "Filter the issue list by customer, with all actions scoped correctly to the selected customer."
+        },
+        {
+          "type": "enhancement",
+          "title": "Reference Table ms_level Field",
+          "body": "A new ms_level field has been added to the Program Brand Milestone Status Groups reference table. Accepted values are p, pb, and pbs, supporting multiple rows per Customer, Brand, and Milestone Status Group combination."
+        },
+        {
+          "type": "fix",
+          "title": "Data Ingest Fixes",
+          "body": "Fixed access, selection, and Data Source list issues affecting file configuration management."
+        },
+        {
+          "type": "fix",
+          "title": "Data Reference Fixes",
+          "body": "Fixed filter persistence, edit controls, bulk selection, and import/export formatting issues."
+        },
+        {
+          "type": "fix",
+          "title": "Issue Management Fix",
+          "body": "Fixed a display issue preventing issues from loading."
+        },
+        {
+          "type": "fix",
+          "title": "Configuration Navigation Fix",
+          "body": "Fixed URL mismatches when navigating between Configuration sections."
+        },
+        {
+          "type": "fix",
+          "title": "Program Brand Data Sources Fix",
+          "body": "Fixed an error blocking multiple entries from being added."
+        }
+      ]
+    }
+  

@@ -1,17 +1,25 @@
 
     {
       "version": "June 2026",
-      "date": "June 17, 2026",
-      "summary": "Expanded HCP and HCO profile visibility, richer patient profile details, and several usability fixes across documents, roles, tasks, and notifications.",
+      "date": "June 30, 2026",
+      "summary": "HCP address management enhancements and Patient Tracking improvements. Expanded HCP and HCO profile visibility, richer patient profile details, and several usability fixes across documents, roles, tasks, and notifications.",
       "updates": [
         { "type": "new", "title": "HCP Territory Mapping", "body": "Territory details — including map, territory, zone, and region — are now visible directly on the HCP profile, scoped to each user's access level. FRM and Field Sales teams can also be assigned a geographic map and territory at creation, automatically scoping their members' data visibility." },
         { "type": "new", "title": "HCO Contact Details", "body": "Phone, fax, and email now appear directly on the HCO profile page, so users no longer need to navigate to an affiliated HCP to find contact information." },
+        { "type": "new", "title": "HCP Address Management", "body": "HCP profiles now display multiple addresses with source attribution, automatically prioritizing the most recent SP or dispense address as primary. FRMs can manually add, promote, and manage addresses."},
+        {"type": "enhancement", "title": "Channel Director — Patient Tracking", "body": "The Channel Director role can now view de-identified patient data in Patient Tracking."},
+        {"type": "enhancement", "title": "Document Timestamps", "body": "Uploaded document timestamps now reflect the user's configured timezone."},
+        {"type": "enhancement", "title": "PHI Protection", "body": "The FRM role can no longer create or edit Task descriptions containing protected health information."},
         { "type": "enhancement", "title": "Patient Profile — Support Program Summary", "body": "Active support program names now display in the patient profile header. Patients enrolled in multiple programs show a full program list on hover." },
         { "type": "enhancement", "title": "Patient Profile — Status History Timestamps", "body": "Status history entries now include timestamps alongside dates, making it easier to distinguish between updates recorded on the same day." },
          { "type": "enhancement", "title": "Save Views", "body": "Column ordering in Patient Tracking now persists correctly when saving a view. Saved filters are also retained after editing an Interaction, Infusion Site, or other record and navigating back." },
         { "type": "enhancement", "title": "Tasks Export", "body": "The Description column is now included when exporting CRM Tasks to CSV or XLSX." },
         { "type": "fix", "title": "Patient Documents", "body": "Download and Delete options are now correctly visible for SP/Hub users with the appropriate permissions." },
         { "type": "fix", "title": "Support Programs & Coverages", "body": "Add Support Program and Add New Plan buttons now display correctly for PAL and PS Manager roles." },
-        { "type": "fix", "title": "Inquiry Notifications", "body": "Users without Patient Tracking access no longer encounter an error when clicking an inquiry notification. The notification label has also been updated to \"When an inquiry assigned to me is closed\" for clarity." }
+        { "type": "fix", "title": "Inquiry Notifications", "body": "Users without Patient Tracking access no longer encounter an error when clicking an inquiry notification. The notification label has also been updated to \"When an inquiry assigned to me is closed\" for clarity." },
+        {"type": "fix", "title": "Support Programs", "body": "Fixed an issue where support programs with past expiration dates were not appearing in the table after creation."
+        }
+      
+      
       ]
     }
