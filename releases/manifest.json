@@ -6,6 +6,7 @@
       "name": "Core App",
       "description": "Platform-wide experience, navigation & administration",
       "releases": [
+        { "version": "2026.7", "date": "July 2026", "file": "releases/core-app/2026.7.json" },
         { "version": "2026.6", "date": "June 2026", "file": "releases/core-app/2026.6.json" }
       ]
     },
@@ -18,6 +19,7 @@
           "name": "Data Aggregation — Dashboards",
           "description": "Tailored dashboards for every team",
           "releases": [
+            { "version": "2026.7", "date": "July 2026", "file": "releases/data-aggregation-dashboards/2026.7.json" },
             { "version": "2026.6", "date": "June 2026", "file": "releases/data-aggregation-dashboards/2026.6.json" }
           ]
         },
@@ -26,6 +28,7 @@
           "name": "Consent Clearinghouse™",
           "description": "Secure consent. Confident action.",
           "releases": [
+            { "version": "2026.7", "date": "July 2026", "file": "releases/consent-clearinghouse/2026.7.json" },
             { "version": "2026.6", "date": "June 2026", "file": "releases/consent-clearinghouse/2026.6.json" }
           ]
         }
@@ -35,13 +38,16 @@
       "id": "access-analytics",
       "name": "Access Analytics",
       "description": "Real-time channel intelligence for smarter market access",
-      "releases": []
+      "releases": [
+        { "version": "2026.7", "date": "July 2026", "file": "releases/access-analytics/2026.7.json" }
+      ]
     },
     {
       "id": "patient-watchtower",
       "name": "Patient Watchtower™",
       "description": "The first and only care coordination platform built specifically for specialty and rare disease patients",
       "releases": [
+        { "version": "2026.7", "date": "July 2026", "file": "releases/patient-watchtower/2026.7.json" },
         { "version": "2026.6", "date": "June 2026", "file": "releases/patient-watchtower/2026.6.json" }
       ]
     },
@@ -50,6 +56,7 @@
       "name": "Patient Services Omnichannel CRM",
       "description": "One patient journey: every channel in sync",
       "releases": [
+        { "version": "2026.7", "date": "July 2026", "file": "releases/patient-services-crm/2026.7.json" },
         { "version": "2026.6", "date": "June 2026", "file": "releases/patient-services-crm/2026.6.json" }
       ]
     }
