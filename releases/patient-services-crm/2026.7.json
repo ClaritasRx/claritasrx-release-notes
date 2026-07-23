@@ -1,0 +1,43 @@
+
+    {
+      "version": "2026.7",
+      "date": "July 2026",
+      "summary": "Navigation and PHI protection improvements for SP and FRM users, along with enhancements to Patient Tracking and Patient Profile.",
+      "updates": [
+        {
+          "type": "enhancement",
+          "title": "PHI Protection on Tasks",
+          "body": "The Task Description field is now masked for users in the FRM role, ensuring sensitive patient health information is protected."
+        },
+        {
+          "type": "enhancement",
+          "title": "Consent Status & HCO Columns in Patient Tracking",
+          "body": "Consent Status and HCO columns and filters are now available in Patient Tracking."
+        },
+        {
+          "type": "enhancement",
+          "title": "Status Detail Column Default Visibility",
+          "body": "The Status Detail column now defaults to visible in the Patient Profile > Status History view."
+        },
+        {
+          "type": "enhancement",
+          "title": "Share Modal Warning",
+          "body": "A warning is now shown when a saved filter includes the Watch filter, helping prevent unintended sharing behavior."
+        },
+        {
+          "type": "enhancement",
+          "title": "Sortable Latest Referral Date Column",
+          "body": "The \"Latest Referral Date\" column in Patient Tracking is now sortable when a payer filter is active."
+        },
+        {
+          "type": "fix",
+          "title": "Days Pending Column Accuracy",
+          "body": "The Days Pending column now shows correct values for patients in Pending status."
+        },
+        {
+          "type": "fix",
+          "title": "SP User Navigation",
+          "body": "Specialty Pharmacy users can now navigate from the Patient Tracking list to Patient Services without encountering a 403 error."
+        }
+      ]
+    }

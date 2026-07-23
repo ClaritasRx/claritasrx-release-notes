@@ -1,0 +1,13 @@
+
+    {
+      "version": "2026.7",
+      "date": "July 2026",
+      "summary": "The Data Quality Dashboard now includes issue resolution reporting for greater visibility into data partner performance.",
+      "updates": [
+        {
+          "type": "new",
+          "title": "Issue Resolution Reporting",
+          "body": "The Data Quality Dashboard now includes issue resolution reporting. Users can track the resolution status and speed of data issues, providing greater visibility into the performance of data partners."
+        }
+      ]
+    }

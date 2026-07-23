@@ -1,0 +1,58 @@
+
+    {
+      "version": "2026.7",
+      "date": "July 2026",
+      "summary": "Expanded consent visibility in the Alignment Report and improved coverage.",
+      "updates": [
+        {
+          "type": "new",
+          "title": "Consent-Only Patient Visibility",
+          "body": "Every patient with a HIPAA consent record now appears in the Consent Alignment Report — even if they don't have a patient status, prescription, referral, or dispense on file. Consent alone is enough to surface a patient."
+        },
+        {
+          "type": "new",
+          "title": "Consent Tabs in Alignment Report",
+          "body": "HIPAA and Program Consent are now displayed as in-page tabs in the Consent Alignment Report, making it easier to review consent status without switching views."
+        },
+        {
+          "type": "new",
+          "title": "Misalignment Filter Toggle",
+          "body": "A dedicated toggle on the Alignment Report lets you filter to only patients with a consent misalignment, making it faster to prioritize outreach."
+        },
+        {
+          "type": "new",
+          "title": "Misalignment Indicators in Consent Evidence Drawer",
+          "body": "The Consent Evidence Drawer now surfaces \"In Review\" status and misalignment indicators inline, so you can assess and act on issues without switching views."
+        },
+        {
+          "type": "new",
+          "title": "Multiple Authoritative Sources",
+          "body": "The Alignment Report now shows all authoritative data sources and their individual consent status side by side for each patient."
+        },
+        {
+          "type": "enhancement",
+          "title": "Inline Review Expiry",
+          "body": "Consent reviews recorded inline now expire automatically, keeping the report current without any manual cleanup."
+        },
+        {
+          "type": "enhancement",
+          "title": "Simplified Data Source Filter",
+          "body": "The Hub and SP data source consent filters are now combined into a single control on the Alignment Report."
+        },
+        {
+          "type": "enhancement",
+          "title": "Consent Dates per Source",
+          "body": "Consent Given, Consent Expiry, and Review Expiry dates are now surfaced per source in the Alignment Report."
+        },
+        {
+          "type": "enhancement",
+          "title": "Consent In Review Notifications",
+          "body": "Email digest alignment notifications now include items with \"Consent In Review\" status."
+        },
+        {
+          "type": "fix",
+          "title": "Breadcrumb Navigation Access",
+          "body": "Specialty Pharmacy users no longer see a 403 error when navigating to the Consent Clearinghouse breadcrumb from the Alignment Report."
+        }
+      ]
+    }

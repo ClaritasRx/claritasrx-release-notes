@@ -1,0 +1,49 @@
+
+    {
+      "version": "2026.7",
+      "date": "July 2026",
+      "summary": "Journey Board Alerts are now live — follow cards, get daily digests, and navigate directly to filtered patient lists. A few enhancements to Patient Tracking and Patient Profile.",
+      "updates": [
+        {
+          "type": "new",
+          "title": "Journey Board Alerts & Daily Digest",
+          "body": "Follow the journey board cards that matter to you and receive a daily email showing how many patients moved in and out since yesterday. Each card in the digest links directly to the pre-filtered Patient Tracking view so you can take action immediately."
+        },
+        {
+          "type": "new",
+          "title": "Activity Hover on Journey Cards",
+          "body": "Hovering over any journey board card now shows a live snapshot of patient movement — entered, exited, and net change since yesterday — without leaving the page."
+        },
+        {
+          "type": "new",
+          "title": "Issue Group Assigned Date Column",
+          "body": "Patient Tracking now includes an \"Assigned to Card\" date column — sortable and filterable by date range — so you can see exactly when each patient entered a card and narrow your list to a specific window."
+        },
+        {
+          "type": "enhancement",
+          "title": "Consent Status & HCO Columns in Patient Tracking",
+          "body": "Consent Status and HCO columns and filters are now available in Patient Tracking."
+        },
+        {
+          "type": "enhancement",
+          "title": "Status Detail Column Default Visibility",
+          "body": "The Status Detail column now defaults to visible in the Patient Profile > Status History view."
+        },
+        {
+          "type": "enhancement",
+          "title": "Share Modal Warning",
+          "body": "A warning is now shown when a saved filter includes the Watch filter, helping prevent unintended sharing behavior."
+        },
+        {
+          "type": "enhancement",
+          "title": "Sortable Latest Referral Date Column",
+          "body": "The \"Latest Referral Date\" column in Patient Tracking is now sortable when a payer filter is active."
+        },
+        {
+          "type": "fix",
+          "title": "Days Pending Column Accuracy",
+          "body": "The Days Pending column now shows correct values for patients in Pending status."
+        }
+      ]
+    }
+

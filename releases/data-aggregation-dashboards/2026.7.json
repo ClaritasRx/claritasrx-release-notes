@@ -1,0 +1,53 @@
+
+    {
+      "version": "2026.7",
+      "date": "July 2026",
+      "summary": "This release includes Issue Management V2, Outgoing Data Validation feature, Ad-hoc Data Export download functionality, and several smaller enhancements and fixes.",
+      "updates": [
+        {
+          "type": "new",
+          "title": "Issue Management V2",
+          "body": "Now supports auto resolved issues, bulk actions and new filters, with audit logs."
+        },
+        {
+          "type": "new",
+          "title": "Outgoing Data Validation",
+          "body": "New feature to review, approve, or reject Data Export extracts before delivery to data partners."
+        },
+        {
+          "type": "new",
+          "title": "Data Export Adhoc Download",
+          "body": "Download a Data Export extract on demand without affecting its scheduled run."
+        },
+        {
+          "type": "enhancement",
+          "title": "Data Export Review Config",
+          "body": "New Config \"Auto/Manual\" review added to decide if each extract run should be manually validated or not."
+        },
+        {
+          "type": "enhancement",
+          "title": "Data Export SFTP Configs",
+          "body": "Added a SFTP Delivery-Related section (SFTP destination, retry attempts) to Data Export config creation."
+        },
+        {
+          "type": "enhancement",
+          "title": "Program Brand Milestone Grace Period Anchor",
+          "body": "Added a Grace Period Anchor (Earliest/Latest) field to the reference table."
+        },
+        {
+          "type": "enhancement",
+          "title": "MA Pages Refresh Button",
+          "body": "Added a refresh button to reload data without losing filters."
+        },
+        {
+          "type": "fix",
+          "title": "Data Export",
+          "body": "Fixed catalog ordering, editing scheduler post-start-date, and fixed config audit history."
+        },
+        {
+          "type": "fix",
+          "title": "Data Ingest Crx-Internal Tab",
+          "body": "Added the separate Crx-Internal tab on Data Ingest page."
+        }
+      ]
+    }

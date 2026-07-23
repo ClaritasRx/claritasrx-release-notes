@@ -1,0 +1,26 @@
+
+
+    {
+      "version": "2026.7",
+      "date": "July 2026",
+      "summary": "Support Portal for ticket management, increased list view capacity, and a clearer duplicate user error experience.",
+      "updates": [
+        {
+          "type": "new",
+          "title": "Support Portal",
+          "body": "Users can now submit, track, and manage support tickets directly within Ascend 2.0."
+        },
+        {
+          "type": "new",
+          "title": "Increased List View Row Limit",
+          "body": "Rows per page in list views have been increased from 200 to 500, reducing the need to paginate through large data sets."
+        },
+        {
+          "type": "fix",
+          "title": "Duplicate User Error Message",
+          "body": "Attempting to invite a user who already exists now shows a clear, specific error message instead of a generic failure notice."
+        }
+      ]
+    }
+  
+
