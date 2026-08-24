@@ -6,7 +6,7 @@
       "name": "Core App",
       "description": "Platform-wide experience, navigation & administration",
       "releases": [
-        { "version": "2026.8", "date": "August 2026", "file": "releases/core-app/2026.8.json" }
+        { "version": "2026.8", "date": "August 2026", "file": "releases/core-app/2026.8.json" },
         { "version": "2026.7", "date": "July 2026", "file": "releases/core-app/2026.7.json" },
         { "version": "2026.6", "date": "June 2026", "file": "releases/core-app/2026.6.json" }
       ]
