@@ -1,0 +1,16 @@
+{
+
+    
+      "version": "2026.8",
+      "date": "August 2026",
+      "summary": "Layout and link fixes in the Consent & Compliance Hub.",
+      "updates": [
+        
+        {
+          "type": "enhancement",
+          "title": "CCH Consent Summary Email",
+          "body": "The Consent Summary email has a refreshed layout that is easier to scan."
+        }
+      ]
+    }
+

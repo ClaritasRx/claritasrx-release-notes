@@ -1,0 +1,43 @@
+{
+      "version": "2026.8",
+      "date": "August 2026",
+      "summary": "Provisional patient, PA expiry tracking, and a set of patient tracking reliability fixes.",
+      "updates": [
+        {
+          "type": "new",
+          "title": "Provisional Patient",
+          "body": "Provisionally enrolled patients now appear in Patient Tracking behind a default-hidden filter, tagged as \"provisional\" for easy identification. They are excluded from the Journey Board and geography-based role restrictions, and brand lookup resolves across multiple data sources without requiring an exact match."
+        },
+        {
+          "type": "new",
+          "title": "PA Expiry Column & Filter",
+          "body": "A new Prior Authorization Expiry column and filter in Patient Tracking lets teams quickly spot upcoming PA lapses before they occur."
+        },
+        {
+          "type": "enhancement",
+          "title": "Journey Board Status History",
+          "body": "Journey Step and Issue Group columns are now available in the Status History tab on the Patient Profile, giving teams more context on a patient's progression."
+        },
+        {
+          "type": "enhancement",
+          "title": "Hub Patient ID Tooltip",
+          "body": "The Hub Patient ID label now includes a tooltip showing the earliest and latest Hub Patient IDs associated with a patient."
+        },
+        {
+          "type": "fix",
+          "title": "Patient Tracking Export",
+          "body": "Resolved an issue where duplicate patient records appeared across paginated pages in exports."
+        },
+        {
+          "type": "fix",
+          "title": "Patient Tracking Filters & Columns",
+          "body": "Primary Affiliation now appears for HCPs from data source; Current HCP Name, HCP NPI, and Primary HCO columns populate correctly; the Referral Source filter now returns only patients whose latest source matches the selection; and the Add button behaves correctly when clicked away."
+        },
+        {
+          "type": "fix",
+          "title": "Journey Board Date Collision",
+          "body": "The Journey Board now resolves same-date status collisions to the lowest-rank Issue Group, with Issue Group rank visible in Status History."
+        }
+      ]
+    }
+

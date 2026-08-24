@@ -1,0 +1,71 @@
+{
+ 
+      "version": "2026.8",
+      "date": "August 2026",
+      "summary": "HCP-to-patient linking, directory improvements, and a range of reliability fixes across enrollment, tasks, and team management.",
+      "updates": [
+        {
+          "type": "new",
+          "title": "HCP Patient Linking",
+          "body": "Teams can now manually associate an HCP to a patient directly from the Patient Profile. Teams can also change the primary HCP for a patient at any time. If no direct link exists, the system automatically falls back to the Primary HCP when resolving patient status."
+        },
+        {
+          "type": "enhancement",
+          "title": "HCP & HCO Directory Search",
+          "body": "The HCP list is now searchable by HCP ID; HCO and Infusion Site IDs appear alongside names in dropdowns; and a new Tasks tab is available on both HCP and HCO directory pages."
+        },
+    
+        {
+          "type": "enhancement",
+          "title": "Timezone-Aware Date & Time",
+          "body": "Date and time fields across the app now reflect the user's selected timezone, including inquiry comment timestamps."
+        },
+        {
+          "type": "fix",
+          "title": "Enrollment ID Link",
+          "body": "Fixed the Enrollment ID not displaying as a hyperlink in the Edit Task form; it now correctly navigates to the associated enrollment form."
+        },
+        {
+          "type": "fix",
+          "title": "Team Management",
+          "body": " \"Select All\" option has been added to the Territory multi-select on the Create Team form."
+        },
+        {
+          "type": "fix",
+          "title": "Inquiry Assignment",
+          "body": "Fixed a dropdown that incorrectly allowed selection of SP users and teams without the required referral source access."
+        },
+        {
+          "type": "fix",
+          "title": "HCP Territory Display",
+          "body": "Fixed territory not appearing after updating an HCP profile using the same zip code."
+        },
+        {
+          "type": "fix",
+          "title": "Infusion Site Phone Number",
+          "body": "Fixed phone number disappearing from the Infusion Site table after creation or editing; removal of a phone number now also persists after save."
+        },
+        {
+          "type": "fix",
+          "title": "FRM Role Name",
+          "body": "Corrected the display name for the FRM role type."
+        },
+      
+        {
+          "type": "fix",
+          "title": "HCP & HCO Directory Matching",
+          "body": "HCP and Infusion Site creation now returns exact matches by name or ID."
+        },
+        {
+          "type": "fix",
+          "title": "Insurance Plan Editing",
+          "body": "Fixed a server error that occurred when editing an Insurance Plan by Payer Type and Plan Type."
+        },
+        {
+          "type": "fix",
+          "title": "Team-Level Support Ticket Isolation",
+          "body": "Tenant users now only see and interact with support tickets belonging to their own team(s), preventing unintended cross-team data exposure in the support portal."
+        }
+      ]
+    }
+

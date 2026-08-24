@@ -1,0 +1,14 @@
+{
+
+    
+      "version": "2026.8",
+      "date": "August 2026",
+      "summary": "Support portal improvements and platform reliability enhancements.",
+      "updates": [
+        {
+          "type": "fix",
+          "title": "Support Portal",
+          "body": "Custom date range now works for the current date; the clear icon correctly resets the \"Last 30 Days\" filter; uploaded files retain their original filename; and Dashboard and Issues styling now matches the rest of the app."
+        }
+      ]
+    }
