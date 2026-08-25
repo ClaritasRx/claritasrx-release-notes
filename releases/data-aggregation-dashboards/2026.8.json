@@ -1,0 +1,80 @@
+{
+      "version": "2026.13",
+      "date": "August, 2026",
+      "summary": "This release adds a Validation Summary Report, Clinical Observation Types reference table and brings enhancements to Issue Management, Data Export, and Outgoing Validation. It also adds an Outgoing File Monitoring screen and brings enhancements/fixes across Issue Log, Data Export, Data Reference, and role permissions.",
+      "updates": [
+        {
+          "type": "new",
+          "title": "Download Validation Summary Report",
+          "body": "From Data Ingest Files tab we can now download a single excel summary of all validation rules configured for a file."
+        },
+        {
+          "type": "new",
+          "title": "Clinical Observation Types",
+          "body": "New reference table added."
+        },
+          {
+          "type": "new",
+          "title": "Outgoing File Monitoring",
+          "body": "New tab in File Monitoring to track every outgoing file (Data Export or Data Report)."
+        },
+        {
+          "type": "enhancement",
+          "title": "Issue Management",
+          "body": "Added search, a date range filter, and cleaned field labels (Severity & Validation Handling). Auto-resolved issues now show \"System\" as the resolver."
+        },
+        {
+          "type": "enhancement",
+          "title": "Outgoing Validation",
+          "body": "Added bulk download of files, extract type filter and additional data points in detail view."
+        },
+        {
+          "type": "enhancement",
+          "title": "Grace Period Anchor Field",
+          "body": "Converted from free text to a dropdown field (Earliest/Latest), defaulting to Latest."
+        },
+        {
+          "type": "enhancement",
+          "title": "Data Export",
+          "body": "SFTP delivery path is now optional, and lengthy catalog names now show on hover."
+        },
+         {
+          "type": "enhancement",
+          "title": "Issue Log Data Report",
+          "body": "Now excludes Resolved records."
+        },
+        {
+          "type": "enhancement",
+          "title": "Data Export",
+          "body": "SFTP Destination Location field now accepts spaces."
+        },
+        {
+          "type": "enhancement",
+          "title": "Reference Table",
+          "body": "Added implicit_rules field to Program Brand Milestone Status Rules."
+        },
+        {
+          "type": "fix",
+          "title": "Data Export",
+          "body": "Fixed long configuration names breaking column width and readability."
+        },
+         {
+          "type": "fix",
+          "title": "Data Reference",
+          "body": "Fixed new records jumping position mid-entry, and an inconsistent column header."
+        },
+        {
+          "type": "fix",
+          "title": "Role Permissions",
+          "body": "Fixed restricted actions showing for Admin, Project Manager, and Production Services roles."
+        }
+      ]
+    }
+
+
+
+      
+       
+       
+    
+    

@@ -20,6 +20,7 @@
           "name": "Data Aggregation — Dashboards",
           "description": "Tailored dashboards for every team",
           "releases": [
+            { "version": "2026.8", "date": "August 2026", "file": "releases/data-aggregation-dashboards/2026.8.json" },
             { "version": "2026.7", "date": "July 2026", "file": "releases/data-aggregation-dashboards/2026.7.json" },
             { "version": "2026.6", "date": "June 2026", "file": "releases/data-aggregation-dashboards/2026.6.json" }
           ]
