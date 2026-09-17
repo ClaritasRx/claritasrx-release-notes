@@ -4,6 +4,12 @@
       "date": "July 2026",
       "summary": "This release includes Issue Management V2, Outgoing Data Validation feature, Ad-hoc Data Export download functionality, and several smaller enhancements and fixes.",
       "updates": [
+
+         {
+          "type": "new",
+          "title": "Issue Resolution Reporting",
+          "body": "The Data Quality Dashboard now includes issue resolution reporting. Users can track the resolution status and speed of data issues, providing greater visibility into the performance of data partners."
+        },
         {
           "type": "new",
           "title": "Issue Management V2",
