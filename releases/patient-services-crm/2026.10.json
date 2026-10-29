@@ -14,7 +14,7 @@
         {
           "type": "enhancement",
           "title": "Flexible HCP and HCO Setup",
-          "body": "Affiliated HCO is now optional when creating or editing an HCP, and the HCO Profile Patients tab offers a \"Primary HCP not in this HCO\" filter in place of \"All Associated\"."
+          "body": "Affiliated HCO is now optional when creating or editing an HCP."
         },
         {
           "type": "fix",
