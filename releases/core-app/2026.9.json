@@ -1,0 +1,14 @@
+
+    {
+      "version": "2026.16.0",
+      "date": "September 17, 2026",
+      "summary": "Safer user management and better support visibility.",
+      "updates": [
+        {
+          "type": "enhancement",
+          "title": "Support Dashboard Filters",
+          "body": "The Support Dashboard now has deep links and additional filters."
+        }
+      ]
+    }
+  s

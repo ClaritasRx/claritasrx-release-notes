@@ -1,0 +1,50 @@
+
+    {
+      "version": "2026.16.0",
+      "date": "September 2026",
+      "summary": "Saved patient views stay current, and Patient Tracking opens on the newest referrals.",
+      "updates": [
+      
+        {
+          "type": "enhancement",
+          "title": "Default Sort by Referral Date",
+          "body": "Patient Tracking now sorts by latest referral date, newest first."
+        },
+         {
+          "type": "enhancement",
+          "title": "Search by Previous SP Patient ID",
+          "body": "Patient search now matches previously used specialty pharmacy patient IDs, so patients stay findable after an ID change."
+        },
+         {
+          "type": "enhancement",
+          "title": "CRx Patient ID on Inquiries",
+          "body": "Inquiry Details now shows the CRx Patient ID as a link to the patient record."
+        },
+           {
+          "type": "enhancement",
+          "title": "Smarter Inquiry Defaults",
+          "body": "New inquiries now pre-fill Team and Assignee from the patient's most recent referral."
+        },
+         {
+          "type": "enhancement",
+          "title": "Actionable Inquiry Filter",
+          "body": "The \"Actionable Only\" filter is now labeled \"Actionable Inquiry\" for clarity."
+        },
+         {
+          "type": "enhancement",
+          "title": "CRx HCP ID in Directory",
+          "body": "The HCP Directory now includes a CRx HCP ID column, and search shows exact matches first."
+        },
+          {
+          "type": "fix",
+          "title": "HCO Search by ID",
+          "body": "Fixed searching the HCO Profile by HCO ID so it returns results."
+        },
+        {
+          "type": "fix",
+          "title": "HCP Territory in Patient Tracking",
+          "body": "Fixed Patient Tracking so it shows an updated HCP territory immediately after the change."
+        }
+      ]
+    }
+  

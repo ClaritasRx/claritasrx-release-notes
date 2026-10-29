@@ -1,0 +1,18 @@
+
+    {
+      "version": "2026.15.0",
+      "date": "September 2026",
+      "summary": "Consent badges and regional scoping are now more accurate.",
+      "updates": [
+        {
+          "type": "enhancement",
+          "title": "Consistent Geography Scoping",
+          "body": "Inquiries and Consent Clearinghouse now scope geography to the Primary HCP, so both agree on a patient's region."
+        },
+        {
+          "type": "fix",
+          "title": "Expired Consent Badge",
+          "body": "Fixed patients who never gave consent showing an \"Expired Consent\" badge."
+        }
+      ]
+    }

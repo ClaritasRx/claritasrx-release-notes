@@ -1,0 +1,66 @@
+
+    {
+      "version": "2026.16.0",
+      "date": "September 2026",
+      "summary": "Easier patient lookup, richer inquiry details, and several search and display fixes.",
+      "updates": [
+        {
+          "type": "enhancement",
+          "title": "Search by Previous SP Patient ID",
+          "body": "Patient search now matches previously used specialty pharmacy patient IDs, so patients stay findable after an ID change."
+        },
+        {
+          "type": "enhancement",
+          "title": "Inbox Default Filter",
+          "body": "The Inbox now opens filtered to Unreviewed and Ready for Enrollment."
+        },
+         {
+          "type": "enhancement",
+          "title": "CRx HCP ID in Directory",
+          "body": "The HCP Directory now includes a CRx HCP ID column, and search shows exact matches first."
+        },
+        {
+          "type": "fix",
+          "title": "HCP Links in Patient Details",
+          "body": "Fixed HCP name links so they open the profile again."
+        },
+        {
+          "type": "fix",
+          "title": "HCO Search by ID",
+          "body": "Fixed searching the HCO Profile by HCO ID so it returns results."
+        },
+        {
+          "type": "fix",
+          "title": "Call and SMS Buttons",
+          "body": "Fixed Call and SMS buttons so they appear for all applicable roles."
+        },
+        {
+          "type": "fix",
+          "title": "Patient Data Freshness",
+          "body": "Fixed patient summary data so it refreshes when an HCP affiliation or an HCO's primary address changes."
+        },
+        {
+          "type": "enhancement",
+          "title": "Actionable Inquiry Filter",
+          "body": "The \"Actionable Only\" filter is now labeled \"Actionable Inquiry\" for clarity."
+        },
+        {
+          "type": "fix",
+          "title": "Linked HCP After Enrollment",
+          "body": "Fixed an issue where an HCP linked during enrollment did not appear on the Patient Profile."
+        },
+        {
+          "type": "fix",
+          "title": "Interaction Sorting",
+          "body": "Fixed Interaction lists so the most recent interactions appear at the top."
+        },
+        {
+          "type": "fix",
+          "title": "Interaction Form Indicators",
+          "body": "Fixed the Interactions form marking Scheduled Date/Time as mandatory when Interaction Date/Time is the required field."
+        }
+      
+      ]
+    
+   
+    }
