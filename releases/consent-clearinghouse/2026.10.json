@@ -1,0 +1,31 @@
+
+    {
+      "version": "2026.18.0",
+      "date": "October 2026",
+      "summary": "Faster consent analysis and a cleaner Alignment Report.",
+      "updates": [
+        {
+          "type": "enhancement",
+          "title": "Consent Rate by Default",
+          "body": "Per-source charts now default to consent rate, with a volume toggle and count tooltips for faster analysis."
+        },
+        {
+          "type": "fix",
+          "title": "Alignment Report Filters",
+          "body": "The \"Consent in review\" filter and review dates are now hidden when no authorization source is configured."
+        },
+  
+        {
+          "type": "fix",
+          "title": "Consent per Data Source",
+          "body": "The visual now uses actual consent values and lets you unselect a data partner."
+        },
+        {
+          "type": "fix",
+          "title": "Alignment Report Drawer",
+          "body": "The popout drawer now shows the CRx ID instead of the patient SID."
+        }
+        
+      ]
+    
+    }

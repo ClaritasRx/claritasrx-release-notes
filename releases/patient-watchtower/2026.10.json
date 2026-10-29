@@ -1,0 +1,47 @@
+{
+  "module": "Patient Watchtower",
+  "releases": [
+    {
+      "version": "2026.18.0",
+      "date": "October 2026",
+      "summary": "Easier navigation on the Journey Board.",
+      "updates": [
+        {
+          "type": "enhancement",
+          "title": "Floating Journey Board Scrollbar",
+          "body": "The horizontal scrollbar on the Patient Journey Board now stays in view, so you no longer need to scroll to the bottom to move across the board."
+        },
+        {
+          "type": "enhancement",
+          "title": "Patient Tracking Search and Shipments",
+          "body": "Find patients by external source ID, and see Latest Shipment Date and Days Until Next Shipment Due directly in the Patient Tracking table."
+        },
+        {
+          "type": "enhancement",
+          "title": "Journey Board Referral Date Filter",
+          "body": "You can now filter the Patient Journey Board by latest referral date."
+        },
+           {
+          "type": "enhancement",
+          "title": "Inquiry Reassignment Search",
+          "body": "The owner and assignee dropdown now supports search and shows the full team."
+        },
+        {
+          "type": "fix",
+          "title": "Previous SP IDs Tooltip",
+          "body": "Fixed historical specialty pharmacy names being cut off in the \"Previous SP IDs\" tooltip."
+        },
+        {
+          "type": "fix",
+          "title": "Bulk Inquiry Assignment",
+          "body": "Fixed bulk inquiry creation so it no longer assigns inquiries to users without inquiry access."
+        },
+        {
+          "type": "fix",
+          "title": "Notes Access for PAL Users",
+          "body": "PAL users can now create and view notes for consented patients only, and cannot create or view notes for non-consented patients."
+        }
+      ]
+    }
+  ]
+}

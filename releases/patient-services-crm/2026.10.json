@@ -1,0 +1,32 @@
+{
+  "module": "Patient Services Omnichannel CRM",
+  "releases": [
+    {
+      "version": "2026.18.0",
+      "date": "October 2026",
+      "summary": "Easier copying of identifiers and better inquiry reassignment.",
+      "updates": [
+        {
+          "type": "enhancement",
+          "title": "Copyable Identifiers",
+          "body": "SP ID, NPI, Hub ID, DEA and other identifiers can now be selected and copied across Patient Tracking, Patient Profile and Directory."
+        },
+        {
+          "type": "enhancement",
+          "title": "Flexible HCP and HCO Setup",
+          "body": "Affiliated HCO is now optional when creating or editing an HCP, and the HCO Profile Patients tab offers a \"Primary HCP not in this HCO\" filter in place of \"All Associated\"."
+        },
+        {
+          "type": "fix",
+          "title": "Interaction Participants",
+          "body": "Fixed custom HCP participants displaying as Contact participants."
+        },
+        {
+          "type": "fix",
+          "title": "Notes Access for PAL Users",
+          "body": "PAL users can now create and view notes for consented patients only, and cannot create or view notes for non-consented patients."
+        }
+      ]
+    }
+  ]
+}

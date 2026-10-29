@@ -1,0 +1,13 @@
+
+    {
+      "version": "2026.18.0",
+      "date": "October 2026",
+      "summary": "Finer access control and larger exports.",
+      "updates": [
+        {
+          "type": "enhancement",
+          "title": "Larger Exports",
+          "body": "Page size and download limits are raised to 1,000 rows, and Audit Logs and User Activity no longer error when 200 rows per page is selected."
+        }
+      ]
+    }
