@@ -1,6 +1,4 @@
-{
-  "module": "Patient Watchtower",
-  "releases": [
+
     {
       "version": "2026.18.0",
       "date": "October 2026",
@@ -43,5 +41,3 @@
         }
       ]
     }
-  ]
-}
